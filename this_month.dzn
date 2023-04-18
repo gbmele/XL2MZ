@@ -1,0 +1,468 @@
+array[1..70] of var int: GM_requests = array1d(1..70,[
+4,	2,	0,	4,	1,	0,	0,	% day 7 GM
+4,	2,	99,	4,	4,	0,	0,	% day 14 GM
+4,	2,	0,	4,	4,	99,	99,	% day 21 GM
+4,	2,	0,	4,	0,	0,	1,	% day 28 GM
+4,	2,	99,	4,	0,	0,	1,	% day 35 GM
+4,	2,	0,	4,	1,	0,	0,	% day 42 GM
+4,	2,	0,	4,	1,	99,	99,	% day 49 GM
+47,	47,	47,	47,	0,	99,	99,	% day 56 GM
+47,	47,	47,	47,	0,	99,	99,	% day 63 GM
+47,	47,	47,	47,	0,	99,	99,	% day 0 GM
+                            %leave count GM is 12
+
+ ]); % end of array for doc GM
+
+array[1..70] of var int: RG_requests = array1d(1..70,[
+4,	4,	4,	2,	0,	0,	99,	% day 7 RG
+4,	4,	4,	2,	0,	0,	99,	% day 14 RG
+41,	41,	41,	41,	0,	99,	99,	% day 21 RG
+4,	4,	4,	0,	0,	1,	99,	% day 28 RG
+4,	4,	4,	99,	0,	1,	99,	% day 35 RG
+4,	4,	4,	2,	0,	0,	99,	% day 42 RG
+41,	41,	41,	41,	0,	99,	99,	% day 49 RG
+41,	41,	41,	41,	0,	99,	99,	% day 56 RG
+4,	4,	4,	4,	0,	99,	99,	% day 63 RG
+4,	4,	4,	4,	0,	99,	99,	% day 0 RG
+                            %leave count RG is 12
+
+ ]); % end of array for doc RG
+
+array[1..70] of var int: DB_requests = array1d(1..70,[
+0,	1,	0,	1,	2,	0,	0,	% day 7 DB
+1,	2,	0,	1,	0,	1,	1,	% day 14 DB
+1,	1,	0,	1,	2,	0,	0,	% day 21 DB
+1,	2,	0,	1,	1,	99,	99,	% day 28 DB
+42,	42,	42,	42,	0,	99,	99,	% day 35 DB
+42,	42,	42,	42,	0,	99,	99,	% day 42 DB
+1,	2,	0,	1,	0,	2,	2,	% day 49 DB
+0,	2,	0,	1,	1,	0,	0,	% day 56 DB
+1,	2,	0,	1,	1,	0,	0,	% day 63 DB
+1,	2,	0,	1,	1,	0,	0,	% day 0 DB
+                            %leave count DB is 8
+
+ ]); % end of array for doc DB
+
+array[1..70] of var int: MC_requests = array1d(1..70,[
+0,	1,	2,	4,	1,	0,	0,	% day 7 MC
+0,	1,	2,	4,	0,	1,	0,	% day 14 MC
+0,	1,	2,	4,	0,	2,	0,	% day 21 MC
+0,	1,	2,	4,	1,	0,	0,	% day 28 MC
+1,	0,	2,	4,	99,	1,	99,	% day 35 MC
+1,	1,	0,	4,	2,	0,	0,	% day 42 MC
+41,	41,	41,	41,	0,	99,	99,	% day 49 MC
+1,	0,	2,	4,	0,	1,	0,	% day 56 MC
+0,	1,	1,	4,	2,	0,	0,	% day 63 MC
+42,	42,	42,	42,	0,	99,	99,	% day 0 MC
+                            %leave count MC is 8
+
+ ]); % end of array for doc MC
+
+array[1..70] of var int: CC_requests = array1d(1..70,[
+2,	0,	1,	1,	1,	0,	0,	% day 7 CC
+2,	0,	1,	1,	1,	0,	0,	% day 14 CC
+2,	0,	1,	1,	99,	2,	2,	% day 21 CC
+0,	0,	1,	1,	2,	99,	99,	% day 28 CC
+42,	42,	42,	42,	0,	99,	99,	% day 35 CC
+2,	0,	1,	1,	1,	0,	0,	% day 42 CC
+2,	0,	1,	1,	1,	0,	0,	% day 49 CC
+2,	0,	1,	1,	1,	0,	0,	% day 56 CC
+2,	0,	1,	1,	0,	1,	1,	% day 63 CC
+0,	0,	1,	1,	2,	0,	0,	% day 0 CC
+                            %leave count CC is 4
+
+ ]); % end of array for doc CC
+
+array[1..70] of var int: SD_requests = array1d(1..70,[
+1,	4,	0,	2,	99,	2,	0,	% day 7 SD
+1,	4,	1,	2,	99,	99,	99,	% day 14 SD
+42,	42,	42,	42,	0,	99,	99,	% day 21 SD
+4,	1,	1,	2,	0,	0,	0,	% day 28 SD
+1,	4,	0,	2,	0,	0,	1,	% day 35 SD
+1,	1,	4,	0,	2,	0,	0,	% day 42 SD
+4,	1,	0,	2,	0,	0,	1,	% day 49 SD
+4,	1,	1,	0,	2,	0,	0,	% day 56 SD
+1,	1,	4,	2,	0,	0,	0,	% day 63 SD
+1,	0,	4,	2,	0,	2,	0,	% day 0 SD
+                            %leave count SD is 4
+
+ ]); % end of array for doc SD
+
+array[1..70] of var int: HL_requests = array1d(1..70,[
+2,	0,	4,	1,	1,	0,	0,	% day 7 HL
+1,	1,	4,	2,	0,	0,	0,	% day 14 HL
+0,	1,	4,	2,	0,	1,	2,	% day 21 HL
+0,	0,	4,	1,	2,	0,	0,	% day 28 HL
+2,	0,	4,	1,	1,	0,	0,	% day 35 HL
+0,	1,	4,	2,	0,	1,	2,	% day 42 HL
+0,	0,	4,	1,	2,	0,	0,	% day 49 HL
+1,	1,	4,	2,	0,	0,	0,	% day 56 HL
+41,	41,	41,	41,	0,	99,	99,	% day 63 HL
+42,	42,	42,	42,	99,	99,	99,	% day 0 HL
+                            %leave count HL is 8
+
+ ]); % end of array for doc HL
+
+array[1..70] of var int: DL_requests = array1d(1..70,[
+1,	2,	4,	0,	0,	2,	2,	% day 7 DL
+0,	1,	4,	0,	2,	0,	0,	% day 14 DL
+1,	2,	4,	0,	1,	0,	0,	% day 21 DL
+1,	2,	4,	0,	1,	99,	99,	% day 28 DL
+99,	2,	4,	0,	1,	99,	99,	% day 35 DL
+1,	2,	4,	0,	1,	99,	99,	% day 42 DL
+41,	41,	41,	41,	0,	99,	99,	% day 49 DL
+41,	41,	41,	41,	0,	99,	99,	% day 56 DL
+41,	41,	41,	41,	0,	99,	99,	% day 63 DL
+0,	2,	4,	0,	0,	1,	1,	% day 0 DL
+                            %leave count DL is 12
+
+ ]); % end of array for doc DL
+
+array[1..70] of var int: RM_requests = array1d(1..70,[
+1,	2,	4,	1,	0,	1,	1,	% day 7 RM
+0,	2,	4,	1,	1,	0,	0,	% day 14 RM
+0,	2,	4,	0,	1,	0,	0,	% day 21 RM
+1,	2,	0,	42,	42,	99,	99,	% day 28 RM
+99,	1,	4,	1,	1,	0,	0,	% day 35 RM
+1,	2,	4,	0,	0,	1,	1,	% day 42 RM
+0,	1,	4,	1,	2,	0,	0,	% day 49 RM
+1,	2,	4,	1,	99,	99,	99,	% day 56 RM
+43,	43,	43,	43,	99,	99,	99,	% day 63 RM
+43,	43,	43,	43,	0,	99,	99,	% day 0 RM
+                            %leave count RM is 10
+
+ ]); % end of array for doc RM
+
+array[1..70] of var int: GN_requests = array1d(1..70,[
+2,	0,	2,	43,	0,	2,	0,	% day 7 GN
+2,	0,	2,	43,	0,	2,	0,	% day 14 GN
+2,	0,	2,	43,	0,	2,	0,	% day 21 GN
+2,	0,	2,	43,	0,	2,	0,	% day 28 GN
+2,	0,	2,	43,	0,	2,	0,	% day 35 GN
+2,	0,	2,	43,	0,	2,	0,	% day 42 GN
+2,	0,	2,	43,	0,	2,	0,	% day 49 GN
+2,	0,	2,	43,	0,	2,	0,	% day 56 GN
+2,	0,	2,	43,	0,	2,	0,	% day 63 GN
+2,	0,	2,	43,	0,	2,	0,	% day 0 GN
+                            %leave count GN is 10
+
+ ]); % end of array for doc GN
+
+array[1..70] of var int: EW_requests = array1d(1..70,[
+0,	99,	1,	1,	2,	0,	0,	% day 7 EW
+0,	1,	2,	4,	1,	91,	91,	% day 14 EW
+0,	99,	2,	4,	1,	0,	0,	% day 21 EW
+0,	4,	1,	1,	2,	91,	91,	% day 28 EW
+0,	1,	1,	2,	4,	0,	0,	% day 35 EW
+0,	1,	1,	4,	2,	0,	0,	% day 42 EW
+41,	41,	41,	0,	0,	99,	99,	% day 49 EW
+99,	0,	0,	4,	1,	2,	2,	% day 56 EW
+0,	0,	2,	4,	1,	0,	0,	% day 63 EW
+0,	1,	2,	4,	0,	1,	1,	% day 0 EW
+                            %leave count EW is 3
+
+ ]); % end of array for doc EW
+
+array[1..70] of var int: BB_requests = array1d(1..70,[
+77,	1,	1,	0,	0,	99,	99,	% day 7 BB
+0,	1,	1,	0,	0,	99,	99,	% day 14 BB
+0,	1,	1,	0,	0,	99,	99,	% day 21 BB
+0,	1,	1,	0,	0,	99,	99,	% day 28 BB
+0,	1,	1,	0,	0,	99,	99,	% day 35 BB
+0,	1,	1,	0,	0,	99,	99,	% day 42 BB
+0,	1,	1,	0,	0,	99,	99,	% day 49 BB
+0,	1,	1,	0,	0,	99,	99,	% day 56 BB
+0,	1,	1,	0,	0,	99,	99,	% day 63 BB
+0,	1,	1,	0,	0,	99,	77,	% day 0 BB
+                            %leave count BB is 0
+
+ ]); % end of array for doc BB
+
+array[1..70] of var int: LB_requests = array1d(1..70,[
+0,	0,	41,	0,	41,	99,	99,	% day 7 LB
+2,	0,	1,	0,	1,	99,	99,	% day 14 LB
+42,	0,	42,	0,	42,	99,	99,	% day 21 LB
+2,	0,	1,	0,	1,	2,	2,	% day 28 LB
+0,	0,	1,	0,	2,	0,	0,	% day 35 LB
+2,	0,	1,	0,	1,	0,	0,	% day 42 LB
+2,	0,	1,	0,	1,	1,	1,	% day 49 LB
+0,	0,	1,	0,	2,	0,	0,	% day 56 LB
+2,	0,	1,	0,	1,	0,	0,	% day 63 LB
+2,	0,	1,	0,	1,	0,	0,	% day 0 LB
+                            %leave count LB is 5
+
+ ]); % end of array for doc LB
+
+array[1..70] of var int: LC_requests = array1d(1..70,[
+0,	2,	0,	2,	0,	0,	0,	% day 7 LC
+0,	2,	0,	2,	0,	0,	0,	% day 14 LC
+0,	2,	0,	2,	0,	99,	0,	% day 21 LC
+0,	2,	0,	99,	0,	1,	1,	% day 28 LC
+0,	2,	0,	2,	0,	0,	0,	% day 35 LC
+0,	2,	0,	2,	0,	1,	1,	% day 42 LC
+0,	2,	0,	2,	0,	99,	0,	% day 49 LC
+0,	2,	0,	2,	0,	0,	0,	% day 56 LC
+0,	2,	0,	2,	0,	0,	0,	% day 63 LC
+0,	2,	0,	2,	0,	0,	99,	% day 0 LC
+                            %leave count LC is 0
+
+ ]); % end of array for doc LC
+
+array[1..70] of var int: DH_requests = array1d(1..70,[
+1,	0,	4,	0,	2,	99,	99,	% day 7 DH
+2,	0,	4,	0,	1,	2,	2,	% day 14 DH
+0,	0,	4,	0,	2,	99,	99,	% day 21 DH
+2,	0,	4,	0,	1,	99,	99,	% day 28 DH
+42,	42,	42,	0,	0,	99,	99,	% day 35 DH
+41,	41,	41,	0,	0,	99,	99,	% day 42 DH
+41,	41,	41,	0,	0,	99,	99,	% day 49 DH
+41,	41,	41,	0,	0,	99,	99,	% day 56 DH
+41,	41,	41,	0,	0,	99,	99,	% day 63 DH
+41,	41,	41,	0,	0,	99,	99,	% day 0 DH
+                            %leave count DH is 18
+
+ ]); % end of array for doc DH
+
+array[1..70] of var int: SK_requests = array1d(1..70,[
+45,	45,	45,	0,	0,	0,	0,	% day 7 SK
+45,	45,	45,	0,	0,	0,	0,	% day 14 SK
+45,	45,	45,	0,	0,	0,	0,	% day 21 SK
+45,	45,	45,	0,	0,	0,	0,	% day 28 SK
+45,	45,	45,	0,	0,	0,	0,	% day 35 SK
+45,	45,	45,	0,	0,	0,	0,	% day 42 SK
+45,	45,	45,	0,	0,	0,	0,	% day 49 SK
+45,	45,	45,	0,	0,	0,	0,	% day 56 SK
+45,	45,	45,	0,	0,	0,	0,	% day 63 SK
+45,	45,	45,	0,	0,	0,	0,	% day 0 SK
+                            %leave count SK is 30
+
+ ]); % end of array for doc SK
+
+array[1..70] of var int: BL_requests = array1d(1..70,[
+0,	1,	0,	2,	0,	0,	0,	% day 7 BL
+0,	0,	0,	1,	2,	0,	0,	% day 14 BL
+0,	0,	0,	2,	0,	0,	2,	% day 21 BL
+4,	0,	0,	2,	0,	0,	0,	% day 28 BL
+0,	0,	0,	0,	0,	0,	0,	% day 35 BL
+0,	0,	0,	0,	0,	0,	0,	% day 42 BL
+4,	4,	4,	4,	0,	0,	0,	% day 49 BL
+4,	4,	4,	4,	0,	0,	0,	% day 56 BL
+0,	0,	0,	2,	0,	0,	2,	% day 63 BL
+0,	0,	0,	1,	2,	0,	42,	% day 0 BL
+                            %leave count BL is 1
+
+ ]); % end of array for doc BL
+
+array[1..70] of var int: ML_requests = array1d(1..70,[
+0,	0,	1,	1,	0,	0,	2,	% day 7 ML
+0,	0,	1,	1,	0,	0,	2,	% day 14 ML
+0,	0,	1,	1,	0,	0,	1,	% day 21 ML
+0,	0,	41,	1,	0,	0,	2,	% day 28 ML
+0,	0,	1,	1,	0,	0,	2,	% day 35 ML
+0,	0,	1,	1,	0,	0,	2,	% day 42 ML
+0,	0,	1,	1,	0,	0,	2,	% day 49 ML
+0,	0,	41,	1,	0,	0,	2,	% day 56 ML
+0,	0,	41,	1,	0,	0,	1,	% day 63 ML
+0,	0,	1,	1,	0,	0,	2,	% day 0 ML
+                            %leave count ML is 3
+
+ ]); % end of array for doc ML
+
+array[1..70] of var int: CP_requests = array1d(1..70,[
+0,	0,	1,	0,	0,	0,	0,	% day 7 CP
+0,	0,	1,	0,	0,	0,	0,	% day 14 CP
+0,	0,	1,	0,	0,	0,	0,	% day 21 CP
+0,	0,	1,	0,	0,	0,	0,	% day 28 CP
+0,	0,	1,	0,	0,	0,	0,	% day 35 CP
+0,	0,	1,	0,	0,	0,	0,	% day 42 CP
+0,	0,	1,	0,	0,	0,	0,	% day 49 CP
+0,	0,	1,	0,	0,	0,	0,	% day 56 CP
+0,	0,	1,	0,	0,	0,	0,	% day 63 CP
+0,	0,	1,	0,	0,	0,	0,	% day 0 CP
+                            %leave count CP is 0
+
+ ]); % end of array for doc CP
+
+array[1..70] of var int: RP_requests = array1d(1..70,[
+0,	1,	0,	2,	0,	0,	2,	% day 7 RP
+0,	1,	0,	2,	4,	0,	42,	% day 14 RP
+0,	42,	0,	42,	0,	0,	2,	% day 21 RP
+0,	1,	0,	2,	0,	0,	41,	% day 28 RP
+0,	41,	0,	41,	41,	0,	41,	% day 35 RP
+0,	41,	0,	41,	41,	0,	41,	% day 42 RP
+0,	41,	0,	41,	41,	0,	41,	% day 49 RP
+0,	41,	0,	41,	41,	0,	41,	% day 56 RP
+0,	41,	0,	41,	0,	0,	2,	% day 63 RP
+0,	1,	0,	2,	4,	0,	2,	% day 0 RP
+                            %leave count RP is 22
+
+ ]); % end of array for doc RP
+
+array[1..70] of var int: AR_requests = array1d(1..70,[
+0,	0,	0,	0,	0,	0,	0,	% day 7 AR
+0,	0,	0,	0,	0,	0,	0,	% day 14 AR
+0,	0,	1,	0,	0,	1,	0,	% day 21 AR
+0,	0,	1,	1,	0,	0,	0,	% day 28 AR
+0,	0,	1,	1,	0,	0,	0,	% day 35 AR
+0,	0,	1,	1,	0,	99,	99,	% day 42 AR
+0,	0,	1,	0,	0,	1,	99,	% day 49 AR
+0,	0,	1,	1,	0,	99,	99,	% day 56 AR
+0,	0,	1,	1,	0,	99,	99,	% day 63 AR
+0,	0,	1,	1,	0,	99,	99,	% day 0 AR
+                            %leave count AR is 0
+
+ ]); % end of array for doc AR
+
+array[1..70] of var int: LS_requests = array1d(1..70,[
+99,	1,	2,	0,	1,	1,	0,	% day 7 LS
+0,	2,	99,	0,	0,	0,	0,	% day 14 LS
+99,	0,	0,	0,	1,	1,	1,	% day 21 LS
+0,	0,	2,	0,	0,	0,	0,	% day 28 LS
+99,	99,	2,	0,	2,	2,	0,	% day 35 LS
+0,	0,	2,	0,	0,	0,	0,	% day 42 LS
+1,	0,	0,	0,	1,	1,	1,	% day 49 LS
+0,	0,	2,	0,	0,	0,	0,	% day 56 LS
+1,	0,	2,	0,	2,	2,	0,	% day 63 LS
+0,	0,	2,	0,	0,	0,	0,	% day 0 LS
+                            %leave count LS is 0
+
+ ]); % end of array for doc LS
+
+array[1..70] of var int: AV_requests = array1d(1..70,[
+2,	4,	4,	0,	1,	0,	0,	% day 7 AV
+1,	0,	4,	4,	2,	0,	0,	% day 14 AV
+1,	0,	4,	1,	2,	0,	0,	% day 21 AV
+1,	1,	2,	99,	99,	99,	99,	% day 28 AV
+42,	42,	42,	0,	0,	99,	99,	% day 35 AV
+46,	46,	46,	0,	0,	99,	99,	% day 42 AV
+46,	46,	4,	2,	4,	0,	0,	% day 49 AV
+0,	4,	4,	2,	0,	1,	1,	% day 56 AV
+0,	1,	4,	4,	2,	2,	0,	% day 63 AV
+2,	4,	4,	0,	1,	1,	1,	% day 0 AV
+                            %leave count AV is 8
+
+ ]); % end of array for doc AV
+
+array[1..70] of var int: TB_requests = array1d(1..70,[
+1,	4,	2,	99,	99,	99,	99,	% day 7 TB
+99,	4,	2,	0,	0,	2,	2,	% day 14 TB
+0,	4,	2,	0,	99,	99,	99,	% day 21 TB
+1,	4,	2,	0,	0,	0,	0,	% day 28 TB
+1,	4,	2,	0,	0,	0,	0,	% day 35 TB
+1,	4,	2,	0,	0,	0,	0,	% day 42 TB
+1,	4,	2,	0,	0,	0,	0,	% day 49 TB
+1,	4,	2,	0,	0,	1,	1,	% day 56 TB
+0,	4,	2,	0,	0,	0,	0,	% day 63 TB
+1,	4,	2,	0,	0,	0,	0,	% day 0 TB
+                            %leave count TB is 0
+
+ ]); % end of array for doc TB
+
+array[1..70] of var int: JD_requests = array1d(1..70,[
+77,	0,	1,	0,	0,	0,	0,	% day 7 JD
+0,	0,	41,	0,	0,	0,	0,	% day 14 JD
+0,	0,	1,	0,	0,	0,	0,	% day 21 JD
+0,	0,	1,	0,	0,	0,	0,	% day 28 JD
+0,	0,	42,	0,	0,	0,	0,	% day 35 JD
+0,	0,	41,	0,	0,	0,	0,	% day 42 JD
+0,	0,	41,	0,	0,	0,	0,	% day 49 JD
+0,	0,	1,	0,	0,	0,	0,	% day 56 JD
+0,	0,	1,	0,	0,	0,	0,	% day 63 JD
+0,	0,	1,	0,	0,	0,	77,	% day 0 JD
+                            %leave count JD is 4
+
+ ]); % end of array for doc JD
+
+array[1..70] of var int: CK_requests = array1d(1..70,[
+0,	2,	99,	99,	99,	1,	1,	% day 7 CK
+2,	2,	99,	99,	99,	0,	0,	% day 14 CK
+1,	1,	2,	99,	42,	42,	42,	% day 21 CK
+42,	0,	0,	0,	0,	2,	2,	% day 28 CK
+2,	0,	0,	99,	99,	2,	2,	% day 35 CK
+0,	1,	2,	99,	99,	99,	0,	% day 42 CK
+1,	2,	2,	99,	99,	2,	2,	% day 49 CK
+2,	0,	2,	99,	0,	2,	2,	% day 56 CK
+0,	2,	0,	99,	99,	1,	2,	% day 63 CK
+41,	41,	41,	41,	0,	2,	2,	% day 0 CK
+                            %leave count CK is 8
+
+ ]); % end of array for doc CK
+
+array[1..70] of var int: NM_requests = array1d(1..70,[
+0,	0,	0,	0,	0,	0,	0,	% day 7 NM
+99,	3,	99,	1,	1,	1,	1,	% day 14 NM
+99,	0,	0,	0,	0,	0,	0,	% day 21 NM
+99,	0,	0,	0,	0,	0,	0,	% day 28 NM
+99,	0,	0,	0,	0,	0,	0,	% day 35 NM
+99,	0,	0,	1,	1,	2,	2,	% day 42 NM
+0,	0,	0,	0,	0,	0,	0,	% day 49 NM
+0,	0,	0,	0,	0,	0,	0,	% day 56 NM
+0,	0,	0,	0,	0,	0,	0,	% day 63 NM
+99,	1,	1,	2,	2,	99,	99,	% day 0 NM
+                            %leave count NM is 0
+
+ ]); % end of array for doc NM
+
+array[1..70] of var int: KM_requests = array1d(1..70,[
+1,	0,	0,	0,	0,	0,	1,	% day 7 KM
+0,	0,	0,	0,	0,	0,	0,	% day 14 KM
+2,	0,	0,	0,	0,	0,	0,	% day 21 KM
+1,	0,	0,	0,	0,	0,	0,	% day 28 KM
+1,	0,	0,	0,	0,	0,	2,	% day 35 KM
+0,	0,	0,	0,	0,	0,	0,	% day 42 KM
+42,	0,	0,	0,	0,	0,	0,	% day 49 KM
+41,	0,	0,	0,	0,	0,	0,	% day 56 KM
+1,	0,	0,	0,	0,	0,	1,	% day 63 KM
+0,	0,	0,	0,	0,	0,	0,	% day 0 KM
+                            %leave count KM is 2
+
+ ]); % end of array for doc KM
+
+array[1..70] of var int: DZ_requests = array1d(1..70,[
+0,	0,	0,	0,	0,	0,	0,	% day 7 DZ
+0,	0,	0,	0,	0,	0,	1,	% day 14 DZ
+0,	0,	0,	0,	0,	0,	0,	% day 21 DZ
+0,	0,	0,	0,	0,	0,	1,	% day 28 DZ
+0,	0,	0,	0,	0,	0,	0,	% day 35 DZ
+0,	0,	0,	0,	0,	0,	1,	% day 42 DZ
+0,	0,	0,	0,	0,	0,	0,	% day 49 DZ
+0,	0,	0,	0,	0,	0,	1,	% day 56 DZ
+0,	0,	0,	0,	0,	0,	0,	% day 63 DZ
+0,	0,	0,	0,	0,	0,	1,	% day 0 DZ
+                            %leave count DZ is 0
+
+ ]); % end of array for doc DZ
+
+
+array[docs,1..70] of var int: REQUESTS;
+constraint REQUESTS[GM,1..70] = GM_requests;
+constraint REQUESTS[RG,1..70] = RG_requests;
+constraint REQUESTS[DB,1..70] = DB_requests;
+constraint REQUESTS[MC,1..70] = MC_requests;
+constraint REQUESTS[CC,1..70] = CC_requests;
+constraint REQUESTS[SD,1..70] = SD_requests;
+constraint REQUESTS[HL,1..70] = HL_requests;
+constraint REQUESTS[DL,1..70] = DL_requests;
+constraint REQUESTS[RM,1..70] = RM_requests;
+constraint REQUESTS[GN,1..70] = GN_requests;
+constraint REQUESTS[EW,1..70] = EW_requests;
+constraint REQUESTS[BB,1..70] = BB_requests;
+constraint REQUESTS[LB,1..70] = LB_requests;
+constraint REQUESTS[LC,1..70] = LC_requests;
+constraint REQUESTS[DH,1..70] = DH_requests;
+constraint REQUESTS[SK,1..70] = SK_requests;
+constraint REQUESTS[BL,1..70] = BL_requests;
+constraint REQUESTS[ML,1..70] = ML_requests;
+constraint REQUESTS[CP,1..70] = CP_requests;
+constraint REQUESTS[RP,1..70] = RP_requests;
+constraint REQUESTS[AR,1..70] = AR_requests;
+constraint REQUESTS[LS,1..70] = LS_requests;
+constraint REQUESTS[AV,1..70] = AV_requests;
+constraint REQUESTS[TB,1..70] = TB_requests;
+constraint REQUESTS[JD,1..70] = JD_requests;
+constraint REQUESTS[CK,1..70] = CK_requests;
+constraint REQUESTS[NM,1..70] = NM_requests;
+constraint REQUESTS[KM,1..70] = KM_requests;
+constraint REQUESTS[DZ,1..70] = DZ_requests;
+
+%%% put the dates function next
