@@ -5,6 +5,8 @@
 
 include "globals.mzn";
 include "xl_2_rosteron.dzn";
+include "this_month.dzn";  %exported from excel
+
 
 include "xl_2_rosteron_staff.mzn";
 
@@ -12,7 +14,7 @@ include "xl_2_rosteron_staff.mzn";
 include "roster_on_output.mzn";
 include "rosteron_dump.mzn";
 
-%include "xl_2_rosteron_ssu_oncall.mzn";
+include "xl_2_rosteron_ssu_oncall.mzn";
 
 array[docs,days] of var shifts: roster;
 
@@ -65,13 +67,73 @@ output [show(count(roster[..,day],i)) ++ " " ++ if day mod 7 = sunday then "|" e
 %output [show(count(roster[..,day],c)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "cs" else "" endif| day in days] ;output["\n"];
 %output [show(count(roster[..,day],l)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "leave" else "" endif| day in days] ;output["\n"];
 
-%output [show(count(ssu[..,day],1)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "SSU" else "" endif| day in days] ;output["\n"];
+output [show(count(ssu[..,day],1)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "SSU" else "" endif| day in days] ;output["\n"];
 %output [show(count(oncall[..,day],1)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "call" else "" endif| day in days] ;output["\n"];
 %output [show(display_oncall[day]) ++ "" ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "call" else "" endif| day in days] ;output["\n"];
 
 
+output["\nSSU \n"];
+
+output["\(doc) " ++ show(count(ssu[doc,..],1)) ++ "\n " | doc in docs];
+
+output["\nINCHARGE \n"];
+
+output["\(doc) " ++ show(count(incharge[doc,..],1)) ++ "\n " | doc in docs];
+
 output["\n"];
+output["ssu-" ++ show(display_ssu[day])  ++ "  ic- " ++ show(display_incharge[day]) ++ " \(day)\n" | day in days]; 
 
+%%    ron(doc,d,p) then c_cs(doc,d,p1624,c1416)  
 
+function var bool: on_ssu(docs:doc, days:d) =
+               if display_ssu[d]=doc then true else false endif;
 
+function var bool: in_charge(docs:doc, days:d) =
+               if display_incharge[d]=doc then true else false endif;
 
+function var bool: on_am(docs:doc, days:d)=
+               if roster[doc,d]=a then true else false endif; 
+
+function var bool: on_pm(docs:doc, days:d)=
+               if roster[doc,d]=p then true else false endif; 
+
+function var bool: on_cs(docs:doc, days:d)=
+               if roster[doc,d]=c then true else false endif; 
+               
+function var bool: on_al(docs:doc, days:d) =
+               if roster[doc,d]=l /\ REQUESTS[doc,d]=  41 then true else false endif;
+
+function var bool: on_cl(docs:doc, days:d) =
+               if roster[doc,d]=l /\ REQUESTS[doc,d]=  42 then true else false endif;
+
+function var bool: on_lsl(docs:doc, days:d) =
+               if roster[doc,d]=l /\ REQUESTS[doc,d]=  43 then true else false endif;
+
+function var bool: on_patl(docs:doc, days:d) =
+               if roster[doc,d]=l /\ REQUESTS[doc,d]=  44 then true else false endif;
+
+function var bool: on_matl(docs:doc, days:d) =
+               if roster[doc,d]=l /\ REQUESTS[doc,d]=  45 then true else false endif;
+
+function var bool: on_perl(docs:doc, days:d) =
+               if roster[doc,d]=l /\ REQUESTS[doc,d]=  46 then true else false endif;
+
+constraint forall (doc = RG,d in days)
+   (if       on_ssu(doc,d)            then c_cs(doc,d,s818,zz)
+   elseif in_charge(doc,d)            then c_cs(doc,d,i818,zz) 
+   elseif     on_am(doc,d)            then c_cs(doc,d,a818,zz)
+   elseif     on_cs(doc,d)            then c_cs(doc,d,zz,c818)
+   elseif     on_pm(doc,d)            then c_cs(doc,d,p1624,c1416)
+   elseif     on_al(doc,d)            then c_cs(doc,d,al,zz )  
+   elseif     on_cl(doc,d)            then c_cs(doc,d,cl,zz )  
+   elseif    on_lsl(doc,d)            then c_cs(doc,d,lsl,zz)  
+   elseif    on_patl(doc,d)            then c_cs(doc,d,lsl,zz)  
+   elseif    on_matl(doc,d)            then c_cs(doc,d,lsl,zz)  
+   elseif    on_perl(doc,d)            then c_cs(doc,d,lsl,zz)  
+   else                                    c_cs(doc,d,zz,zz )
+   endif
+   ); 
+
+output["CLIN\n"];
+output[show(Clin[RG,1..70]) ++ "\n"];
+output[show(CST[RG,1..70])];

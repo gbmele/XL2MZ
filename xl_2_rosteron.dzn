@@ -6,7 +6,6 @@
 
 %the dates
 
-include "this_month.dzn";  %exported from excel
 
 function string: get_day(days: d) = 
     if d = 1    then "26/12/2022"

@@ -5,7 +5,6 @@ int: conference_leave     = 42;
 int: long_service_leave   = 43;
 int: pat_leave            = 44;
 int: mat_leave            = 45;
-int: LWOP_leave           = 46;
 
 enum shifts2 = {  a812  , %1
                   a814  , %2
@@ -49,7 +48,6 @@ enum shifts2 = {  a812  , %1
                   patl  ,
                   matl  ,
                   perl  ,
-                  LWOP  ,
                   zz    };
 
 
@@ -106,8 +104,6 @@ function string: get_desc(shifts2: sh) =
                elseif   sh = patl     then patleave_shift   
                elseif   sh = matl     then matleave_shift   
                elseif   sh = perl     then personal_leave_shift   
-               elseif   sh = LWOP     then LWOP_shift            
-
                                
                else     "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnNO DESCRIPTION SHIFT"
                endif;
@@ -154,8 +150,6 @@ function string: get_start(shifts2: sh) =
                elseif   sh = patl     then patleave_start  
                elseif   sh = matl     then matleave_start  
                elseif   sh = perl     then personal_leave_start  
-               elseif   sh = LWOP     then LWOP_shift_start            
-
                else     " nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnNO START TIME"
                endif;
 function string: get_fin(shifts2: sh) = 
@@ -199,9 +193,7 @@ function string: get_fin(shifts2: sh) =
                elseif   sh = lsl     then lsleave_finish    
                elseif   sh = patl     then patleave_finish    
                elseif   sh = matl     then matleave_finish    
-               elseif   sh = perl     then personal_leave_finish
-               elseif   sh = LWOP     then LWOP_shift_finish            
-                   
+               elseif   sh = perl     then personal_leave_finish    
                else     "NnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnO FINISH TIME"
                endif;
 
@@ -247,9 +239,7 @@ function string: get_hrs(shifts2: sh) =
                elseif   sh = lsl    then lsleave_hours    
                elseif   sh = patl    then patleave_hours    
                elseif   sh = matl    then matleave_hours    
-               elseif   sh = perl    then personal_leave_hours
-               elseif   sh = LWOP     then LWOP_shift_hours            
-                   
+               elseif   sh = perl    then personal_leave_hours    
                else     "nnnnnnnnnnnnnnnnnnnnnnnnoooooooooooooooo hhhhhhhhrrrrrrrrrrrrsssssss"
                endif;
 
@@ -264,9 +254,8 @@ array[docs,days] of var shifts: RON;
 array[docs,days] of var shifts2: Clin;
 array[docs,days] of var shifts2: CST;
 
-%THIS IS TEMP till oncall ssu incharge is fixed
- 
-    /*
+
+/*
 constraint forall(doc in docs, day in days)
 
         (if      display_ssu[day]=doc      then  RON[doc,day] = s
@@ -275,17 +264,18 @@ constraint forall(doc in docs, day in days)
 
          elseif  roster[doc,day]=o   then  RON[doc,day] = o
 
-         else                              RON[doc,day] = roster[doc,day]
+         else    RON[doc,day] = roster[doc,day]
 
+
+         
+         
          endif);
-
 */
+
 
 constraint forall(doc in docs, day in days)
 
          (RON[doc,day] = roster[doc,day]);
-
-
 
 
 
@@ -298,7 +288,7 @@ predicate ron(docs:doc,days:day,shifts:shift) =
 
 
 %%RG 
-
+/*
 constraint forall(d in days)
            ( if       RON[RG,d] = c then  (Clin[RG,d]=zz   /\ CST[RG,d]=c818)
            
@@ -313,17 +303,17 @@ constraint forall(d in days)
              %elseif   RON[RG,d] = l  then (Clin[RG,d]=al  /\  CST[RG,d]=zz)  
 
 
-             elseif   (RON[RG,d] = l /\ REQUESTS[RG,d] =annual_leave) then (Clin[RG,d]=al  /\  CST[RG,d]=zz)  
+             elseif   (RON[RG,d] = l /\ REQUESTS[RG,d] = 41) then (Clin[RG,d]=al  /\  CST[RG,d]=zz)  
 
-             elseif   (RON[RG,d] = l /\ REQUESTS[RG,d] =conference_leave) then (Clin[RG,d]=cl  /\  CST[RG,d]=zz)  
+             elseif   (RON[RG,d] = l /\ REQUESTS[RG,d] = 42) then (Clin[RG,d]=cl  /\  CST[RG,d]=zz)  
 
-             elseif   (RON[RG,d] = l /\ REQUESTS[RG,d] =long_service_leave) then (Clin[RG,d]=lsl  /\  CST[RG,d]=zz)  
+             elseif   (RON[RG,d] = l /\ REQUESTS[RG,d] = 43) then (Clin[RG,d]=lsl  /\  CST[RG,d]=zz)  
 
 
              else     (Clin[RG,d]= zz /\ CST[RG,d]=zz)
              endif);
 
-
+*/
 
 
 %%GM
@@ -340,11 +330,11 @@ constraint forall(doc = GM,d in days)
              
              %elseif   RON[doc,d] = l then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
 
              elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 47) then (Clin[doc,d]=perl  /\  CST[doc,d]=zz)  
 
@@ -367,11 +357,11 @@ constraint forall(doc in {DB},d in days)
              
 %             elseif   RON[doc,d] = l then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave)  then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
              
 
              else     (Clin[doc,d]= zz /\ CST[doc,d]=zz)
@@ -390,11 +380,11 @@ constraint forall(doc in {CC},d in days)
              
              %elseif   RON[doc,d] = l then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
              
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
 
              else     (Clin[doc,d]= zz /\ CST[doc,d]=zz)
              endif);
@@ -412,11 +402,11 @@ constraint forall(doc = MC,d in days)
              elseif   RON[doc,d] = p then (Clin[doc,d]=p1624  /\  CST[doc,d]=c1416)  
              
 %             elseif   RON[doc,d] = l then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
 
 
              else     (Clin[doc,d]= zz /\ CST[doc,d]=zz)
@@ -439,11 +429,11 @@ constraint forall(doc in {SD},d in days)
 
 %             elseif   RON[doc,d] = l then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
 
              else     (Clin[doc,d]= zz /\ CST[doc,d]=zz)
              endif);
@@ -463,11 +453,11 @@ constraint forall(doc in { HL },d in days)
              
 %             elseif   RON[doc,d] = l then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
 
              else     (Clin[doc,d]= zz /\ CST[doc,d]=zz)
              endif);
@@ -489,11 +479,11 @@ constraint forall(doc in { ML },d in days)
              
 %             elseif   RON[doc,d] = l then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
 
              else     (Clin[doc,d]= zz /\ CST[doc,d]=zz)
              endif);
@@ -502,6 +492,7 @@ constraint forall(doc in { ML },d in days)
 
 
 %DL
+
 constraint forall(doc in { DL },d in days)
            
              (if      RON[doc,d] = c then  (Clin[doc,d]=zz    /\ CST[doc,d]=c818)
@@ -516,17 +507,17 @@ constraint forall(doc in { DL },d in days)
              
 %             elseif   RON[doc,d] = l then (Clin[doc,d]=al     /\  CST[doc,d]=zz )  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
              
 
              else     (Clin[doc,d]= zz /\ CST[doc,d]=zz)
              
              endif);
-                           
+                       
 %RM
 constraint forall(doc in { RM },d in days)
            
@@ -542,11 +533,11 @@ constraint forall(doc in { RM },d in days)
              
 %             elseif   RON[doc,d] = l then (Clin[doc,d]=al     /\  CST[doc,d]=zz )  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =annual_leave) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 41) then (Clin[doc,d]=al  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =conference_leave) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 42) then (Clin[doc,d]=cl  /\  CST[doc,d]=zz)  
 
-             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] =long_service_leave) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
+             elseif   (RON[doc,d] = l /\ REQUESTS[doc,d] = 43) then (Clin[doc,d]=lsl  /\  CST[doc,d]=zz)  
              
 
              else     (Clin[doc,d]= zz /\ CST[doc,d]=zz)
@@ -570,9 +561,9 @@ constraint forall(doc = GN ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i818,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -601,9 +592,9 @@ constraint forall(doc = EW ,d in days)
              elseif   ron(doc,d,i)  then c_cs(doc,d,i817,c1718)
              
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  44  then c_cs(doc,d,patl,zz )  
 
              else     c_cs(doc,d,zz,zz)
@@ -634,9 +625,9 @@ constraint forall(doc = LB , d in days)
 
              elseif   RON[doc,d] = p then c_cs(doc,d,p1624,c1416)  
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -658,14 +649,14 @@ constraint forall(doc = DH ,d in days)
              
              elseif   RON[doc,d] = p  /\ d mod 7 in {friday, monday} then c_cs(doc,d,p1424,zz)  %monday friday pms if not saturday sunday pm
 
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
              endif);
-   
+
 
 %SK
 constraint forall(doc = SK ,d in days)
@@ -680,9 +671,9 @@ constraint forall(doc = SK ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i817,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )     %annual
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )     % conference
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )    % LSL
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )     %annual
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )     % conference
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )    % LSL
             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=   45  then c_cs(doc,d,matl,zz )    % mat leave
 
              else     c_cs(doc,d,zz,zz)
@@ -706,9 +697,9 @@ constraint forall(doc = BL ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i818,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -730,9 +721,9 @@ constraint forall(doc = RP ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i817,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -752,9 +743,9 @@ constraint forall(doc = AR ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i817,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -773,9 +764,9 @@ constraint forall(doc = LS ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i816,c1618)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -797,10 +788,9 @@ constraint forall(doc = AV ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i817,c1718)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  46  then c_cs(doc,d,LWOP,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -819,9 +809,9 @@ constraint forall(doc = LC ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i818,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -839,9 +829,9 @@ constraint forall(doc = KM ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i816,c1618)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -860,9 +850,9 @@ constraint forall(doc = DZ ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,zz,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -880,9 +870,9 @@ constraint forall(doc = BB ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,zz,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -900,9 +890,9 @@ constraint forall(doc = CP ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,zz,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -920,9 +910,9 @@ constraint forall(doc = JD ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,zz,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -932,20 +922,19 @@ constraint forall(doc = CK ,d in days)
            
              (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
              
-             elseif   (ron(doc,d,p) /\ d mod 7 in {saturday,sunday}) then c_cs(doc,d,p1424,zz)  
+             elseif   (ron(doc,d,p) /\ d mod 7 = friday) then c_cs(doc,d,p1424,zz)  
 
-             elseif   ron(doc,d,p) /\ d mod 7 in weekdays then c_cs(doc,d,p1624,c1416)  
-             
+             elseif   ron(doc,d,p) then c_cs(doc,d,p1424,zz)  
 
-             elseif   ron(doc,d,s)  then c_cs(doc,d,s816,c1618)
+             elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
             
-             elseif   ron(doc,d,a)  then c_cs(doc,d,a816,c1618) 
+             elseif   ron(doc,d,a)  then c_cs(doc,d,a818,zz) 
              
-             elseif   ron(doc,d,i)  then c_cs(doc,d,i816,c1618)
+             elseif   ron(doc,d,i)  then c_cs(doc,d,i818,zz)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -954,11 +943,8 @@ constraint forall(doc = CK ,d in days)
 constraint forall(doc = NM ,d in days)
            
              (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
-
-             elseif   ron(doc,d,p) /\ d mod 7 in weekends then c_cs(doc,d,p1424,zz)  
-
-             elseif   ron(doc,d,p) /\ d mod 7 in weekdays then c_cs(doc,d,p1624,c1416)  
              
+             elseif   ron(doc,d,p) then c_cs(doc,d,p1624,c1416)  
 
              elseif   ron(doc,d,s)  then c_cs(doc,d,s816,c1618)
             
@@ -966,9 +952,9 @@ constraint forall(doc = NM ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i816,c1618)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -978,9 +964,7 @@ constraint forall(doc = TB ,d in days)
            
              (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
              
-             elseif   ron(doc,d,p) /\ d mod 7 in weekends then c_cs(doc,d,p1424,zz)  
-
-             elseif   ron(doc,d,p) /\ d mod 7 in weekdays then c_cs(doc,d,p1624,c1416)  
+             elseif   ron(doc,d,p) then c_cs(doc,d,p1624,c1416)  
 
              elseif   ron(doc,d,s)  then c_cs(doc,d,s816,c1618)
             
@@ -988,9 +972,9 @@ constraint forall(doc = TB ,d in days)
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i816,c1618)
              
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= annual_leave then c_cs(doc,d,al,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= conference_leave then c_cs(doc,d,cl,zz )  
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]= long_service_leave then c_cs(doc,d,lsl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,al,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cl,zz )  
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  43  then c_cs(doc,d,lsl,zz )  
 
              else     c_cs(doc,d,zz,zz)
              
@@ -1080,7 +1064,6 @@ output [if fix(CST[doc,day]) != zz then show(fix(get_empnum(doc))) ++ sep
 
 %%oncall using doc_get_empnum
 
-/*                        
 output[show(get_empnum(fix(display_oncall[day])))     ++ sep ++ 
             get_day(day)                              ++ sep ++ 
             area                                      ++ sep ++ 
@@ -1093,11 +1076,10 @@ output[show(get_empnum(fix(display_oncall[day])))     ++ sep ++
             
             | day in days]; 
 
-*/
 
 
 
-/*
+
 output[show(doc)   ++ 
 			" we am: " ++ show(fix(count([roster[doc,d]| d in days where d mod 7 in {saturday,sunday}],a)))         ++
 
@@ -1113,13 +1095,12 @@ output[show(doc)   ++
 output[ show(roster[display_oncall[day],day])  ++ " " ++ "dr is " ++ show(display_oncall[day]) ++ "  " ++ show(get_empnum((fix(display_oncall[day])))) ++ " "  ++ get_day(day) ++ "\n" | day in days];
 
 
-*/
 
 
 output["\n\nWEEK 1\n"];
 output["     "];output[get_day(day) ++ "      \t    " | day in 1..7];output["\n"];
 output["=================================================================================================================================================================\n"];
-%output["\t"];output[show(display_oncall[day])   ++ "\t||\t" | day in wk1  ];output["ONCALL-SMSPT->OC cat 2 \n"];
+output["\t"];output[show(display_oncall[day])   ++ "\t||\t" | day in 1..7  ];output["ONCALL-SMSPT->OC cat 2 \n"];
 output["=================================================================================================================================================================\n"];
 output[" \tMo\t||\t Tu\t||\t We\t||\t Th\t||\t Fr\t||\t Sa\t||\t Su\t||\t\n"];
 output["==================================================================================================================================================================\n"];
@@ -1130,7 +1111,7 @@ output["========================================================================
 output["\n\nWEEK 2\n"];
 output["     "];output[get_day(day) ++ "       \t    " | day in 8..14];output["\n"];
 output["=================================================================================================================================================================\n"];
-%output["\t"];output[show(display_oncall[day])   ++ "\t||\t" | day in wk2  ];output["ONCALL-SMSPT->OC cat 2 \n"];
+output["\t"];output[show(display_oncall[day])   ++ "\t||\t" | day in 8..14  ];output["ONCALL-SMSPT->OC cat 2 \n"];
 output["=================================================================================================================================================================\n"];
 output[" \tMo\t||\t Tu\t||\t We\t||\t Th\t||\t Fr\t||\t Sa\t||\t Su\t||\t\n"];
 output["==================================================================================================================================================================\n"];
