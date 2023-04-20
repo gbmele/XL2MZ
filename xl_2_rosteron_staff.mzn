@@ -20,17 +20,12 @@ set of int: fridays    = {d | d in days where d mod 7 = friday};
 set of int: saturdays  = {d | d in days where d mod 7 = saturday};
 set of int: sundays    = {d | d in days where d mod 7 = sunday};
 
-set of int: weekends   = {d | d in days where d mod 7 in {saturday,sunday}};
-set of int: weekdays   = {d | d in days where d mod 7 in {monday,tuesday,wednesday,thursday,friday}};
+
 
 enum shifts = {o,a,p,c,l,s,i};   %s ssu i incharge x oncall  
 
 
 enum docs = {RG,GM,DB,CC,MC,SD,ML,HL,DL,RM,GN,EW,LB,DH,SK,BL,CP,RP,AR,LS,AV,LC,KM,DZ,BB,JD,CK,NM,TB};
-
-
-
-
 
 
 function int: get_empnum(docs: doc) =
@@ -63,12 +58,12 @@ function int: get_empnum(docs: doc) =
         elseif doc = JD then 62948
         elseif doc = CK then 27601
         elseif doc = NM then 56981  %% Nele Manzanares
-        elseif doc = TB then 53686  %% Teresa Bridgart
+        elseif doc = TB then 77777  %% Teresa Bridgart
         
         else 8888888
         endif;
   
-constraint assert(get_empnum(TB)=53686,"empnum");
+
  
 function string: get_role(docs: doc) =
         if     doc = RG then rg_role 

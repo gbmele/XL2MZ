@@ -35,9 +35,19 @@ constraint forall(doc in docs, day in days)
 */
 
 constraint forall(doc in docs, day in days)
+  
+                ( if ssu[doc,day]=1 then RON[doc,day]=s
+                
+                  elseif incharge[doc,day]=1 then RON[doc,day]=i
+                
+                 else RON[doc,day] = roster[doc,day]
+                 
+                 endif);
+/*
+constraint forall(doc in docs, day in days)
 
-  (RON[doc,day] = roster[doc,day]);
-
+           (RON[doc,day]=roster[doc,day]);
+  */         
 
 predicate c_cs(docs:doc,days:day,shifts2:c,shifts2:cs) =
                     Clin[doc,day]=c /\ CST[doc,day]=cs;
@@ -837,17 +847,6 @@ output[show(get_empnum(fix(display_oncall[day])))     ++ sep ++
             | day in days]; 
 
 
-
-output[show(doc)   ++ 
-			" we am: " ++ show(fix(count([roster[doc,d]| d in days where d mod 7 in {saturday,sunday}],a)))         ++
-
-                   " we pm  "  ++ show(fix(count([roster[doc,d]| d in days where d mod 7 in {saturday,sunday}],p)))         ++
-
-	           " fri pm  "  ++ show(fix(count([roster[doc,d]| d in days where d mod 7 in {friday}],p)))         ++
-                    
-                    
-                    " oncall:" ++ show(fix(count(oncall[doc,..],1)))  ++ "\n" | doc in docs];
-
                         
 %%ONE WEEK AT TIME  ONCALL AT TOP   WITH CLINICAL THEN CLINICAL SUPPORT 
 
@@ -877,4 +876,4 @@ output["========================================================================
 output[show(Clin[doc,day]) ++ "\t|" ++ show(CST[doc,day]) ++ "\t||" ++ if day mod 7 = sunday then show(doc) ++ " " ++ get_role(doc) ++ "\n" else "" endif | doc in docs, day in 8..14 ];
 output["==================================================================================================================================================================\n"];
 
-output[if shift !=zz then show(shift) ++ "\t" ++ get_desc(shift) ++ "\t" ++ get_start(shift) ++ " \t" ++ get_fin(shift) ++ " \t" ++ get_hrs(shift) ++ "\n"  else "" endif | shift in shifts2];
+%output[if shift !=zz then show(shift) ++ "\t" ++ get_desc(shift) ++ "\t" ++ get_start(shift) ++ " \t" ++ get_fin(shift) ++ " \t" ++ get_hrs(shift) ++ "\n"  else "" %endif | shift in shifts2];

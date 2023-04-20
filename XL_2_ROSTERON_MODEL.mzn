@@ -13,7 +13,6 @@ include "xl_2_rosteron_staff.mzn";
 
 include "roster_on_output.mzn";
 include "rosteron_dump.mzn";
-
 include "xl_2_rosteron_ssu_oncall.mzn";
 
 array[docs,days] of var shifts: roster;
@@ -74,16 +73,6 @@ output [show(count(roster[..,day],i)) ++ " " ++ if day mod 7 = sunday then "|" e
 %output [show(display_oncall[day]) ++ "" ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "call" else "" endif| day in days] ;output["\n"];
 
 
-output["\nSSU \n"];
-
-%output["\(doc) " ++ show(count(ssu[doc,..],1)) ++ "\n " | doc in docs];
-
-output["\nINCHARGE \n"];
-
-%output["\(doc) " ++ show(count(incharge[doc,..],1)) ++ "\n " | doc in docs];
-
-output["\n"];
-%output["ssu-" ++ show(display_ssu[day])  ++ "  ic- " ++ show(display_incharge[day]) ++ " \(day)\n" | day in days]; 
 
 %%    ron(doc,d,p) then c_cs(doc,d,p1624,c1416)  
 /*
@@ -139,6 +128,4 @@ constraint forall (doc = RG,d in days)
 
 
 %%ONE WEEK AT TIME  ONCALL AT TOP   WITH CLINICAL THEN CLINICAL SUPPORT 
-
-output[ show(roster[display_oncall[day],day])  ++ " " ++ "dr is " ++ show(display_oncall[day]) ++ "  " ++ show(get_empnum((fix(display_oncall[day])))) ++ " "  ++ get_day(day) ++ "\n" | day in days];
 
