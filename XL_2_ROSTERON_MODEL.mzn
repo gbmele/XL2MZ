@@ -23,8 +23,10 @@ array[docs,days] of var shifts: roster;
 %DISPATCH  REQUESTS ints -> ROSTER shifts 
 
 constraint forall(doc in docs  , day in 1..DAYS)
-   (     if REQUESTS[ doc, day]  = 0   then roster[ doc, day]     = o
+   (     if REQUESTS[ doc, day]  = 0   then roster[ doc, day]     =  o
      elseif REQUESTS[ doc, day ] = 1   then roster[ doc, day ]    =  a
+     elseif REQUESTS[ doc, day ] = 11   then roster[ doc, day ]   =  i
+     elseif REQUESTS[ doc, day ] = 12   then roster[ doc, day ]   =  s
      elseif REQUESTS[ doc, day ] = 2   then roster[ doc, day ]    =  p
      elseif REQUESTS[ doc, day ] = 4   then roster[ doc, day ]    =  c
      elseif REQUESTS[ doc, day ] = 41  then roster[ doc, day ]    =  l % AL
@@ -67,24 +69,24 @@ output [show(count(roster[..,day],i)) ++ " " ++ if day mod 7 = sunday then "|" e
 %output [show(count(roster[..,day],c)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "cs" else "" endif| day in days] ;output["\n"];
 %output [show(count(roster[..,day],l)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "leave" else "" endif| day in days] ;output["\n"];
 
-output [show(count(ssu[..,day],1)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "SSU" else "" endif| day in days] ;output["\n"];
+%output [show(count(ssu[..,day],1)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "SSU" else "" endif| day in days] ;output["\n"];
 %output [show(count(oncall[..,day],1)) ++ " " ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "call" else "" endif| day in days] ;output["\n"];
 %output [show(display_oncall[day]) ++ "" ++ if day mod 7 = sunday then "|" else "" endif  ++ if day = 70 then "call" else "" endif| day in days] ;output["\n"];
 
 
 output["\nSSU \n"];
 
-output["\(doc) " ++ show(count(ssu[doc,..],1)) ++ "\n " | doc in docs];
+%output["\(doc) " ++ show(count(ssu[doc,..],1)) ++ "\n " | doc in docs];
 
 output["\nINCHARGE \n"];
 
-output["\(doc) " ++ show(count(incharge[doc,..],1)) ++ "\n " | doc in docs];
+%output["\(doc) " ++ show(count(incharge[doc,..],1)) ++ "\n " | doc in docs];
 
 output["\n"];
-output["ssu-" ++ show(display_ssu[day])  ++ "  ic- " ++ show(display_incharge[day]) ++ " \(day)\n" | day in days]; 
+%output["ssu-" ++ show(display_ssu[day])  ++ "  ic- " ++ show(display_incharge[day]) ++ " \(day)\n" | day in days]; 
 
 %%    ron(doc,d,p) then c_cs(doc,d,p1624,c1416)  
-
+/*
 function var bool: on_ssu(docs:doc, days:d) =
                if display_ssu[d]=doc then true else false endif;
 
@@ -133,7 +135,10 @@ constraint forall (doc = RG,d in days)
    else                                    c_cs(doc,d,zz,zz )
    endif
    ); 
+*/
 
-output["CLIN\n"];
-output[show(Clin[RG,1..70]) ++ "\n"];
-output[show(CST[RG,1..70])];
+
+%%ONE WEEK AT TIME  ONCALL AT TOP   WITH CLINICAL THEN CLINICAL SUPPORT 
+
+output[ show(roster[display_oncall[day],day])  ++ " " ++ "dr is " ++ show(display_oncall[day]) ++ "  " ++ show(get_empnum((fix(display_oncall[day])))) ++ " "  ++ get_day(day) ++ "\n" | day in days];
+

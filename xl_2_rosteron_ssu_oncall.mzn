@@ -1,4 +1,5 @@
 % SSU 
+/*
 array[docs,days] of var 0..1: ssu;         %% am ->ssu      - as per oncall above  
 
 constraint forall (d in days, doc in docs) ((roster[doc,d]= a <- ssu[doc,d]==1)); % \/ (roster[doc,d] !=a -> ssu[doc,d]==0)     );
@@ -9,7 +10,7 @@ constraint forall(d in days) (count(ssu[..,d],1,1));
 
 constraint forall(d in {DB,GN,SK,DZ,BB,JD,CP}) (count(ssu[d,..],1,0));
 
-constraint forall(d in docs) (global_cardinality_low_up(ssu[d,..],[1],[0],[4]));
+constraint forall(d in docs) (global_cardinality_low_up(ssu[d,..],[1],[0],[7]));
 
 constraint forall(d in docs) (global_cardinality_low_up(ssu[d, 1..14],[1],[0],[2]));
 constraint forall(d in docs) (global_cardinality_low_up(ssu[d,15..28],[1],[0],[2]));
@@ -34,10 +35,10 @@ constraint forall(doc in docs,day in saturdays)
 
 array[days] of var docs: display_ssu;
 constraint forall (day in days, doc in docs) (ssu[doc,day]=1 <- display_ssu[day]=doc);
+*/
 
 
-
-
+/*
 %  INCHARGE
 
 array[docs,days] of var 0..1: incharge;         %% am ->ssu      - as per oncall above  
@@ -80,6 +81,7 @@ constraint forall (day in thursdays) (incharge[ML,day]=0 /\ ssu[ML,day]=0);
 constraint forall (day in wednesdays) (incharge[LB,day]=0 /\ ssu[LB,day]=0);
 
 
+*/
 
 
 % ONCALL
@@ -97,48 +99,50 @@ constraint forall (d in days, doc in docs) ((roster[doc,d]= p <- oncall[doc,d]==
 
 constraint forall(d in days) (count(oncall[..,d],1,1));  %%only 1 person on call per day
 
-constraint count(oncall[RG,..],1,0);
-constraint count(oncall[GM,..],1,0);
-constraint count(oncall[LC,..],1,0);
-%constraint count(oncall[DH,..],1,3);
-
-%constraint count([oncall[DH,d] | d in days where d mod 7 = saturday],1,3);%  /\ count([oncall[DH,d] | d in days where d in {monday,tuesday,wednesday,thursday,friday,sunday}],1,0);
+%%this just temp for DAMIEIN
+constraint count([oncall[DH,d] | d in days where d mod 7 = saturday],1,1)  /\ count([oncall[DH,d] | d in days where d in {monday,tuesday,wednesday,thursday,friday,sunday}],1,0);
 %constraint count(oncall[LS,..],1,ls_oncall);
 %constraint count([oncall[DH,day] | day in sundays],1,0);
+
+
+constraint global_cardinality_low_up(oncall[RG,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[GM,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[DB,..],[1],[3],[5]);
+constraint global_cardinality_low_up(oncall[CC,..],[1],[3],[5]);
+constraint global_cardinality_low_up(oncall[MC,..],[1],[3],[5]);
+constraint global_cardinality_low_up(oncall[SD,..],[1],[3],[5]);
+constraint global_cardinality_low_up(oncall[ML,..],[1],[2],[5]);
+constraint global_cardinality_low_up(oncall[HL,..],[1],[3],[5]);
+constraint global_cardinality_low_up(oncall[DL,..],[1],[2],[5]);
+constraint global_cardinality_low_up(oncall[RM,..],[1],[3],[5]);
+constraint global_cardinality_low_up(oncall[GN,..],[1],[4],[5]);
+constraint global_cardinality_low_up(oncall[EW,..],[1],[4],[5]);
+constraint global_cardinality_low_up(oncall[LB,..],[1],[3],[4]);
 constraint global_cardinality_low_up(oncall[DH,..],[1],[0],[1]);
+constraint global_cardinality_low_up(oncall[SK,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[BL,..],[1],[0],[3]);
+constraint global_cardinality_low_up(oncall[CP,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[RP,..],[1],[3],[5]);
+constraint global_cardinality_low_up(oncall[AR,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[LS,..],[1],[2],[4]);
+constraint global_cardinality_low_up(oncall[AV,..],[1],[2],[4]);
+constraint global_cardinality_low_up(oncall[LC,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[KM,..],[1],[0],[2]);
 
-constraint global_cardinality_low_up(oncall[MC,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[DB,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[CC,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[MC,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[SD,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[ML,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[HL,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[DL,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[RM,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[GN,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[EW,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[LB,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[SK,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[BL,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[RP,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[LS,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[AV,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[AR,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[KM,..],[1],[0],[9]);
-
+constraint global_cardinality_low_up(oncall[DZ,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[BB,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[JD,..],[1],[0],[0]);
+constraint global_cardinality_low_up(oncall[CK,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[NM,..],[1],[1],[3]);
+constraint global_cardinality_low_up(oncall[TB,..],[1],[3],[3]);
 
 constraint forall(d in docs) (global_cardinality_low_up(oncall[d,..],[1],[0],[10]));        %% 5 oncall max per 10 weeks
 
-constraint forall(d in docs) (global_cardinality_low_up(oncall[d, 1..14],[1],[0],[3]));    %%once per fortnight if possible!!!!!
-constraint forall(d in docs) (global_cardinality_low_up(oncall[d,15..28],[1],[0],[3]));
-constraint forall(d in docs) (global_cardinality_low_up(oncall[d,29..42],[1],[0],[3]));
-constraint forall(d in docs) (global_cardinality_low_up(oncall[d,43..56],[1],[0],[3]));
-constraint forall(d in docs) (global_cardinality_low_up(oncall[d,57..70],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(oncall[d, 1..14],[1],[0],[1]));    %%once per fortnight if possible!!!!!
+constraint forall(d in docs) (global_cardinality_low_up(oncall[d,15..28],[1],[0],[1]));
+constraint forall(d in docs) (global_cardinality_low_up(oncall[d,29..42],[1],[0],[1]));
+constraint forall(d in docs) (global_cardinality_low_up(oncall[d,43..56],[1],[0],[1]));
+constraint forall(d in docs) (global_cardinality_low_up(oncall[d,57..70],[1],[0],[1]));
 
 array[days] of var docs: display_oncall;
 constraint forall (day in days, doc in docs) (oncall[doc,day]=1 <- display_oncall[day]=doc);
-
-
-
-%% for martin 

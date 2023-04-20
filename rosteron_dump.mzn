@@ -6,245 +6,6 @@ int: long_service_leave   = 43;
 int: pat_leave            = 44;
 int: mat_leave            = 45;
 
-enum shifts2 = {  a812  , %1
-                  a814  , %2
-                  a816  ,
-                  a817  ,
-                  a81730,
-                  a818  ,
-                  a918,
-                  a1217  ,
-                  a1020  ,
-                  c1113 ,
-                  %c1115 ,
-                  c1116 ,
-                  c1215 ,
-                  c1216 ,
-                  c1218 ,
-                  c1416 ,
-                  c1418 ,
-                  c1618 ,
-                  c1718 ,
-                  c816  ,
-                  c818  ,
-                  c819  ,
-                  p1224 ,
-                  p1323 ,
-                  p1324 ,
-                  p1424 ,
-                  p1624 ,
-                  p1724 ,
-                  s816  ,
-                  s817  ,
-                  s81730,
-                  s818  ,
-                  i816  ,
-                  i817  ,
-                  i81730,
-                  i818  ,
-                  al    ,
-                  cl    ,
-                  lsl   ,
-                  patl  ,
-                  matl  ,
-                  perl  ,
-                  zz    };
-
-
-%put this in rosteronoutput
-
-
-
-%tring: a818_str  = join("_",[area,a818_shift,a818_start,a818_finish,a818_hours,a818_shift_d,"N","N","N"]);
-
-
-string: zz_shift= "zz";
-
-
-
-function string: get_desc(shifts2: sh) = 
-               if       sh = a812 then   a812_shift
-               elseif   sh = a814 then   a814_shift
-               elseif   sh = a816 then   a816_shift
-               elseif   sh = a817 then   a817_shift
-               elseif   sh = a81730 then a81730_shift
-               elseif   sh = a818  then  a818_shift  
-               elseif   sh = a918  then  a918_shift  
-               elseif   sh = a1217  then  a1217_shift  
-               elseif   sh = a1020  then  a1020_shift  
-               elseif   sh = c1113 then  c1113_shift 
-               elseif   sh = c1116 then  c1116_shift 
-               elseif   sh = c1215 then  c1215_shift 
-               elseif   sh = c1216 then  c1216_shift 
-               elseif   sh = c1218 then  c1218_shift 
-               elseif   sh = c1416 then  c1416_shift 
-               elseif   sh = c1418 then  c1418_shift 
-               elseif   sh = c1618 then  c1618_shift 
-               elseif   sh = c1718 then  c1718_shift 
-               elseif   sh = c816  then  c816_shift
-               elseif   sh = c818  then  c818_shift
-               elseif   sh = c819  then  c819_shift
-               elseif   sh = p1224 then  p1224_shift 
-               elseif   sh = p1324 then  p1324_shift   
-               elseif   sh = p1323 then  p1323_shift 
-               elseif   sh = p1424 then  p1424_shift 
-               elseif   sh = p1624 then  p1624_shift 
-               elseif   sh = p1724 then  p1724_shift 
-               elseif   sh = s816  then  s816_shift 
-               elseif   sh = s818  then  s818_shift 
-               elseif   sh = s817  then  s817_shift  
-               elseif   sh = s81730 then s81730_shift
-               elseif   sh = i816   then i816_shift  
-               elseif   sh = i817   then i817_shift  
-               elseif   sh = i818   then i818_shift  
-               elseif   sh = i81730 then i81730_shift
-               elseif   sh = al     then leave_shift   
-               elseif   sh = cl     then cleave_shift   
-               elseif   sh = lsl     then lsleave_shift   
-               elseif   sh = patl     then patleave_shift   
-               elseif   sh = matl     then matleave_shift   
-               elseif   sh = perl     then personal_leave_shift   
-                               
-               else     "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnNO DESCRIPTION SHIFT"
-               endif;
-function string: get_start(shifts2: sh) = 
-               if       sh = a812 then   a812_start
-               elseif   sh = a814 then   a814_start
-               elseif   sh = a816 then   a816_start
-               elseif   sh = a817 then   a817_start
-               elseif   sh = a81730 then a81730_start
-               elseif   sh = a818  then  a818_start
-               elseif   sh = a918  then  a918_start
-               elseif   sh = a816  then  a816_start
-               elseif   sh = a1217  then  a1217_start
-               elseif   sh = a1020  then  a1020_start
-               elseif   sh = c1113 then  c1113_start 
-               elseif   sh = c1116 then  c1116_start 
-               elseif   sh = c1215 then  c1215_start 
-               elseif   sh = c1216 then  c1216_start 
-               elseif   sh = c1218 then  c1218_start 
-               elseif   sh = c1416 then  c1416_start 
-               elseif   sh = c1418 then  c1418_start 
-               elseif   sh = c1618 then  c1618_start 
-               elseif   sh = c1718 then  c1718_start 
-               elseif   sh = c816  then  c816_start
-               elseif   sh = c818  then  c818_start
-               elseif   sh = c819  then  c819_start
-               elseif   sh = p1224 then  p1224_start 
-               elseif   sh = p1323 then  p1323_start 
-               elseif   sh = p1324 then  p1324_start 
-               elseif   sh = p1424 then  p1424_start 
-               elseif   sh = p1624 then  p1624_start 
-               elseif   sh = p1724 then  p1724_start 
-               elseif   sh = s816  then  s816_start 
-               elseif   sh = s818  then  s818_start 
-               elseif   sh = s817  then  s817_start  
-               elseif   sh = s81730 then s81730_start
-               elseif   sh = i816   then i816_start  
-               elseif   sh = i817   then i817_start  
-               elseif   sh = i818   then i818_start  
-               elseif   sh = i81730 then i81730_start
-               elseif   sh = al     then leave_start  
-               elseif   sh = cl     then cleave_start  
-               elseif   sh = lsl     then lsleave_start  
-               elseif   sh = patl     then patleave_start  
-               elseif   sh = matl     then matleave_start  
-               elseif   sh = perl     then personal_leave_start  
-               else     " nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnNO START TIME"
-               endif;
-function string: get_fin(shifts2: sh) = 
-               if       sh = a812 then   a812_finish
-               elseif   sh = a814 then   a814_finish
-               elseif   sh = a816 then   a816_finish
-               elseif   sh = a817 then   a817_finish
-               elseif   sh = a81730 then a81730_finish
-               elseif   sh = a818  then  a818_finish
-               elseif   sh = a918  then  a918_finish
-               elseif   sh = a1217  then  a1217_finish
-               elseif   sh = a1020  then  a1020_finish
-               elseif   sh = c1113 then  c1113_finish
-               elseif   sh = c1116 then  c1116_finish
-               elseif   sh = c1215 then  c1215_finish
-               elseif   sh = c1216 then  c1216_finish
-               elseif   sh = c1218 then  c1218_finish
-               elseif   sh = c1416 then  c1416_finish
-               elseif   sh = c1418 then  c1418_finish 
-               elseif   sh = c1618 then  c1618_finish 
-               elseif   sh = c1718 then  c1718_finish 
-               elseif   sh = c816  then  c816_finish
-               elseif   sh = c818  then  c818_finish
-               elseif   sh = c819  then  c819_finish
-               elseif   sh = p1224 then  p1224_finish 
-               elseif   sh = p1323 then  p1323_finish
-               elseif   sh = p1324 then  p1324_finish
-               elseif   sh = p1424 then  p1424_finish 
-               elseif   sh = p1624 then  p1624_finish 
-               elseif   sh = p1724 then  p1724_finish
-               elseif   sh = s816  then  s816_finish 
-               elseif   sh = s818  then  s818_finish 
-               elseif   sh = s817  then  s817_finish  
-               elseif   sh = s81730 then s81730_finish
-               elseif   sh = i816   then i816_finish
-               elseif   sh = i817   then i817_finish  
-               elseif   sh = i818   then i818_finish  
-               elseif   sh = i81730 then i81730_finish
-               elseif   sh = al     then leave_finish    
-               elseif   sh = cl     then cleave_finish    
-               elseif   sh = lsl     then lsleave_finish    
-               elseif   sh = patl     then patleave_finish    
-               elseif   sh = matl     then matleave_finish    
-               elseif   sh = perl     then personal_leave_finish    
-               else     "NnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnO FINISH TIME"
-               endif;
-
-function string: get_hrs(shifts2: sh) = 
-               if       sh = a812 then   a812_hours
-               elseif   sh = a814 then   a814_hours
-               elseif   sh = a816 then   a816_hours
-               elseif   sh = a817 then   a817_hours
-               elseif   sh = a81730 then a81730_hours
-               elseif   sh = a818  then  a818_hours
-               elseif   sh = a918  then  a918_hours
-               elseif   sh = a816  then  a816_hours
-               elseif   sh = a1217  then  a1217_hours
-               elseif   sh = a1020  then  a1020_hours
-               elseif   sh = c1113 then  c1113_hours
-               elseif   sh = c1116 then  c1116_hours
-               elseif   sh = c1215 then  c1215_hours
-               elseif   sh = c1216 then  c1216_hours
-               elseif   sh = c1218 then  c1218_hours
-               elseif   sh = c1416 then  c1416_hours
-               elseif   sh = c1418 then  c1418_hours
-               elseif   sh = c1618 then  c1618_hours
-               elseif   sh = c1718 then  c1718_hours 
-               elseif   sh = c816  then  c816_hours
-               elseif   sh = c818  then  c818_hours
-               elseif   sh = c819  then  c819_hours
-               elseif   sh = p1224 then  p1224_hours 
-               elseif   sh = p1323 then  p1323_hours
-               elseif   sh = p1324 then  p1324_hours
-               elseif   sh = p1424 then  p1424_hours 
-               elseif   sh = p1624 then  p1624_hours 
-               elseif   sh = p1724 then  p1724_hours
-               elseif   sh = s816  then  s816_hours
-               elseif   sh = s818  then  s818_hours
-               elseif   sh = s817  then  s817_hours 
-               elseif   sh = s81730 then s81730_hours
-               elseif   sh = i816   then i816_hours
-               elseif   sh = i817   then i817_hours  
-               elseif   sh = i818   then i818_hours  
-               elseif   sh = i81730 then i81730_hours
-               elseif   sh = al     then leave_hours    
-               elseif   sh = cl     then cleave_hours    
-               elseif   sh = lsl    then lsleave_hours    
-               elseif   sh = patl    then patleave_hours    
-               elseif   sh = matl    then matleave_hours    
-               elseif   sh = perl    then personal_leave_hours    
-               else     "nnnnnnnnnnnnnnnnnnnnnnnnoooooooooooooooo hhhhhhhhrrrrrrrrrrrrsssssss"
-               endif;
-
-
-
 
 
 array[docs,days] of var shifts: RON;
@@ -256,6 +17,7 @@ array[docs,days] of var shifts2: CST;
 
 
 /*
+
 constraint forall(doc in docs, day in days)
 
         (if      display_ssu[day]=doc      then  RON[doc,day] = s
@@ -272,11 +34,9 @@ constraint forall(doc in docs, day in days)
          endif);
 */
 
-
 constraint forall(doc in docs, day in days)
 
-         (RON[doc,day] = roster[doc,day]);
-
+  (RON[doc,day] = roster[doc,day]);
 
 
 predicate c_cs(docs:doc,days:day,shifts2:c,shifts2:cs) =
@@ -288,7 +48,7 @@ predicate ron(docs:doc,days:day,shifts:shift) =
 
 
 %%RG 
-/*
+
 constraint forall(d in days)
            ( if       RON[RG,d] = c then  (Clin[RG,d]=zz   /\ CST[RG,d]=c818)
            
@@ -313,7 +73,7 @@ constraint forall(d in days)
              else     (Clin[RG,d]= zz /\ CST[RG,d]=zz)
              endif);
 
-*/
+
 
 
 %%GM
@@ -1078,8 +838,6 @@ output[show(get_empnum(fix(display_oncall[day])))     ++ sep ++
 
 
 
-
-
 output[show(doc)   ++ 
 			" we am: " ++ show(fix(count([roster[doc,d]| d in days where d mod 7 in {saturday,sunday}],a)))         ++
 
@@ -1089,7 +847,8 @@ output[show(doc)   ++
                     
                     
                     " oncall:" ++ show(fix(count(oncall[doc,..],1)))  ++ "\n" | doc in docs];
-                    
+
+                        
 %%ONE WEEK AT TIME  ONCALL AT TOP   WITH CLINICAL THEN CLINICAL SUPPORT 
 
 output[ show(roster[display_oncall[day],day])  ++ " " ++ "dr is " ++ show(display_oncall[day]) ++ "  " ++ show(get_empnum((fix(display_oncall[day])))) ++ " "  ++ get_day(day) ++ "\n" | day in days];
