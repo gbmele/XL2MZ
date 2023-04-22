@@ -1,5 +1,5 @@
 array[1..70] of var int: GM_requests = array1d(1..70,[
-0,	2,	0,	4,	4,	0,	0,	% day 7 GM
+4,	2,	0,	4,	4,	0,	0,	% day 7 GM
 4,	2,	99,	4,	4,	0,	0,	% day 14 GM
 4,	2,	0,	4,	4,	99,	99,	% day 21 GM
 4,	2,	0,	4,	0,	0,	1,	% day 28 GM

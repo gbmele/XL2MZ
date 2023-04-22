@@ -40,6 +40,19 @@ string: on_call_dag_end = join(sep,["23:59","07:59","R","N"," "," "," ","N","N",
 %% conference leave =is    
 %% Long Service Leave is ------
 
+string: SABB_shift  = "SABB";
+string: SABB_shift_start  = "08:00";
+string: SABB_shift_finish = "18:00";
+string: SABB_shift_hours  = "10.00";
+
+string: PHNW_shift  = "PHNW";
+string: PHNW_shift_start  = "08:00";
+string: PHNW_shift_finish = "18:00";
+string: PHNW_shift_hours  = "10.00";
+
+
+
+
 string: LWOP_shift  = "0605";
 string: LWOP_shift_start  = "08:00";
 string: LWOP_shift_finish = "18:00";
@@ -132,13 +145,13 @@ string: c1113_shift   =  "CST 1100-1300-12240-B0006-01";   %%GN
 string: c1113_start   =  "11:00";
 string: c1113_finish  =  "13:00";
 string: c1113_hours   =  "2.00";
-string: c1113_shift_d =  "CST 1100-1300";
+%string: c1113_shift_d =  "CST 1100-1300";
 
 string: c1116_shift   =  "CST 1100-1600-12240-B0006-01";  
 string: c1116_start   =  "11:00";
 string: c1116_finish  =  "16:00";
 string: c1116_hours   =  "5.00";
-string: c1116_shift_d =  "CST 1100-1600";
+%string: c1116_shift_d =  "CST 1100-1600";
 
 string: c1215_shift   =  "CST 1200-1500-12240-B0006-01";  
 string: c1215_start   =  "12:00";
@@ -378,6 +391,7 @@ enum shifts2 = {  a812  , %1
                   p1323 ,
                   p1324 ,
                   p1424 ,
+                  p1524 ,
                   p1624 ,
                   p1724 ,
                   s816  ,
@@ -388,13 +402,15 @@ enum shifts2 = {  a812  , %1
                   i817  ,
                   i81730,
                   i818  ,
-                  al    ,
-                  cl    ,
-                  lsl   ,
-                  patl  ,
-                  matl  ,
-                  perl  ,
-                  LWOP  ,
+                  all    ,
+                  cll    ,
+                  lsll   ,
+                  patll  ,
+                  matll  ,
+                  perll  ,
+                  LWOPl  ,
+                  SABB   ,
+                  PHNW   ,
                   zz    };
 
 
@@ -438,6 +454,7 @@ function string: get_desc(shifts2: sh) =
                elseif   sh = p1324 then  p1324_shift   
                elseif   sh = p1323 then  p1323_shift 
                elseif   sh = p1424 then  p1424_shift 
+               elseif   sh = p1524 then  p1524_shift 
                elseif   sh = p1624 then  p1624_shift 
                elseif   sh = p1724 then  p1724_shift 
                elseif   sh = s816  then  s816_shift 
@@ -448,13 +465,15 @@ function string: get_desc(shifts2: sh) =
                elseif   sh = i817   then i817_shift  
                elseif   sh = i818   then i818_shift  
                elseif   sh = i81730 then i81730_shift
-               elseif   sh = al     then leave_shift   
-               elseif   sh = cl     then cleave_shift   
-               elseif   sh = lsl     then lsleave_shift   
-               elseif   sh = patl     then patleave_shift   
-               elseif   sh = matl     then matleave_shift   
-               elseif   sh = perl     then personal_leave_shift   
-               elseif   sh = LWOP     then LWOP_shift            
+               elseif   sh = all     then leave_shift   
+               elseif   sh = cll     then cleave_shift   
+               elseif   sh = lsll     then lsleave_shift   
+               elseif   sh = patll     then patleave_shift   
+               elseif   sh = matll     then matleave_shift   
+               elseif   sh = perll     then personal_leave_shift   
+               elseif   sh = LWOPl     then LWOP_shift            
+               elseif   sh = SABB      then SABB_shift            
+               elseif   sh = PHNW      then PHNW_shift            
                else     "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnNO DESCRIPTION SHIFT"
                endif;
 function string: get_start(shifts2: sh) = 
@@ -484,6 +503,7 @@ function string: get_start(shifts2: sh) =
                elseif   sh = p1323 then  p1323_start 
                elseif   sh = p1324 then  p1324_start 
                elseif   sh = p1424 then  p1424_start 
+               elseif   sh = p1524 then  p1524_start 
                elseif   sh = p1624 then  p1624_start 
                elseif   sh = p1724 then  p1724_start 
                elseif   sh = s816  then  s816_start 
@@ -494,13 +514,15 @@ function string: get_start(shifts2: sh) =
                elseif   sh = i817   then i817_start  
                elseif   sh = i818   then i818_start  
                elseif   sh = i81730 then i81730_start
-               elseif   sh = al     then leave_start  
-               elseif   sh = cl     then cleave_start  
-               elseif   sh = lsl     then lsleave_start  
-               elseif   sh = patl     then patleave_start  
-               elseif   sh = matl     then matleave_start  
-               elseif   sh = perl     then personal_leave_start  
-               elseif   sh = LWOP     then LWOP_shift_start            
+               elseif   sh = all     then leave_start  
+               elseif   sh = cll     then cleave_start  
+               elseif   sh = lsll     then lsleave_start  
+               elseif   sh = patll     then patleave_start  
+               elseif   sh = matll     then matleave_start  
+               elseif   sh = perll     then personal_leave_start  
+               elseif   sh = LWOPl     then LWOP_shift_start            
+               elseif   sh = SABB     then SABB_shift_start            
+               elseif   sh = PHNW     then PHNW_shift_start            
 
                else     " nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnNO START TIME"
                endif;
@@ -530,6 +552,7 @@ function string: get_fin(shifts2: sh) =
                elseif   sh = p1323 then  p1323_finish
                elseif   sh = p1324 then  p1324_finish
                elseif   sh = p1424 then  p1424_finish 
+               elseif   sh = p1524 then  p1524_finish 
                elseif   sh = p1624 then  p1624_finish 
                elseif   sh = p1724 then  p1724_finish
                elseif   sh = s816  then  s816_finish 
@@ -540,13 +563,15 @@ function string: get_fin(shifts2: sh) =
                elseif   sh = i817   then i817_finish  
                elseif   sh = i818   then i818_finish  
                elseif   sh = i81730 then i81730_finish
-               elseif   sh = al     then leave_finish    
-               elseif   sh = cl     then cleave_finish    
-               elseif   sh = lsl     then lsleave_finish    
-               elseif   sh = patl     then patleave_finish    
-               elseif   sh = matl     then matleave_finish    
-               elseif   sh = perl     then personal_leave_finish    
-               elseif   sh = LWOP     then LWOP_shift_finish            
+               elseif   sh = all     then leave_finish    
+               elseif   sh = cll     then cleave_finish    
+               elseif   sh = lsll     then lsleave_finish    
+               elseif   sh = patll     then patleave_finish    
+               elseif   sh = matll     then matleave_finish    
+               elseif   sh = perll     then personal_leave_finish    
+               elseif   sh = LWOPl     then LWOP_shift_finish            
+               elseif   sh = SABB     then SABB_shift_finish            
+               elseif   sh = PHNW     then PHNW_shift_finish            
                
                else     "NnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnO FINISH TIME"
                endif;
@@ -578,6 +603,7 @@ function string: get_hrs(shifts2: sh) =
                elseif   sh = p1323 then  p1323_hours
                elseif   sh = p1324 then  p1324_hours
                elseif   sh = p1424 then  p1424_hours 
+               elseif   sh = p1524 then  p1524_hours 
                elseif   sh = p1624 then  p1624_hours 
                elseif   sh = p1724 then  p1724_hours
                elseif   sh = s816  then  s816_hours
@@ -588,13 +614,15 @@ function string: get_hrs(shifts2: sh) =
                elseif   sh = i817   then i817_hours  
                elseif   sh = i818   then i818_hours  
                elseif   sh = i81730 then i81730_hours
-               elseif   sh = al     then leave_hours    
-               elseif   sh = cl     then cleave_hours    
-               elseif   sh = lsl    then lsleave_hours    
-               elseif   sh = patl    then patleave_hours    
-               elseif   sh = matl    then matleave_hours    
-               elseif   sh = perl    then personal_leave_hours
-               elseif   sh = LWOP     then LWOP_shift_hours            
+               elseif   sh = all     then leave_hours    
+               elseif   sh = cll     then cleave_hours    
+               elseif   sh = lsll    then lsleave_hours    
+               elseif   sh = patll    then patleave_hours    
+               elseif   sh = matll    then matleave_hours    
+               elseif   sh = perll    then personal_leave_hours
+               elseif   sh = LWOPl     then LWOP_shift_hours            
+               elseif   sh = SABB     then SABB_shift_hours            
+               elseif   sh = PHNW     then PHNW_shift_hours            
                    
                else     "nnnnnnnnnnnnnnnnnnnnnnnnoooooooooooooooo hhhhhhhhrrrrrrrrrrrrsssssss"
                endif;

@@ -1,9 +1,3 @@
-
-set of int: days  = 1..70; 
-int:        DAYS  = 70;
-int:        WEEKS = 10;
-int:        wk    = 10;
-
 int: monday     = 1;    
 int: tuesday    = 2;
 int: wednesday  = 3;
@@ -21,11 +15,6 @@ set of int: saturdays  = {d | d in days where d mod 7 = saturday};
 set of int: sundays    = {d | d in days where d mod 7 = sunday};
 
 
-
-enum shifts = {o,a,p,c,l,s,i};   %s ssu i incharge x oncall  
-
-
-enum docs = {RG,GM,DB,CC,MC,SD,ML,HL,DL,RM,GN,EW,LB,DH,SK,BL,CP,RP,AR,LS,AV,LC,KM,DZ,BB,JD,CK,NM,TB};
 
 
 function int: get_empnum(docs: doc) =

@@ -61,7 +61,7 @@ array[docs,days] of var 0..1: incharge;         %% am ->ssu      - as per oncall
 
 constraint forall (d in days, doc in docs) ((roster[doc,d]= a /\ ssu[doc,d] != 1)  <- (incharge[doc,d]==1)); % \/ (roster[doc,d] !=a -> ssu[doc,d]==0)     );
 
-constraint forall(d in days) (count(incharge[..,d],1,1));
+constraint forall(d in days) (trace("doing incharge counting \(d) \n", count(incharge[..,d],1,1)));
 
 
 
@@ -138,9 +138,7 @@ array[docs,days] of var 0..1: oncall;
 
     %% am ->ssu      - as per oncall above  
 
-constraint forall (d in days, doc in docs) ((roster[doc,d]= p <- oncall[doc,d]==1)); % \/ (roster[doc,d] !=a -> ssu[doc,d]==0)     );
-
-%constraint forall (d in days, doc in docs) (if roster[doc,d]= p then oncall[doc,d]=1 else true endif);     % \/ (roster[doc,d] !=a -> ssu[doc,d]==0)     );
+constraint forall (d in days, doc in docs) ((roster[doc,d]= p <- oncall[doc,d]==1));
 
 constraint forall(d in days) (count(oncall[..,d],1,1));  %%only 1 person on call per day
 
@@ -192,6 +190,8 @@ constraint forall(d in docs) (global_cardinality_low_up(oncall[d,57..70],[1],[0]
 array[days] of var docs: display_oncall;
 constraint forall (day in days, doc in docs) (oncall[doc,day]=1 <- display_oncall[day]=doc);
 
+%%%%%
+
 
 
 output[show(doc)   ++ 
@@ -213,3 +213,8 @@ output[show(doc)   ++
 output[ show(roster[display_oncall[day],day])  ++ " " ++ "dr is " ++ show(display_oncall[day]) ++ "  " ++ show(get_empnum((fix(display_oncall[day])))) ++ " "  ++ get_day(day) ++ "\n" | day in days];
 
 
+
+
+output[show(doc_num)];
+output["\n"];
+output[show(doc_num[RG])];
