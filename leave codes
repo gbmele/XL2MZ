@@ -1,0 +1,63 @@
+PHNW 0911
+SAB  0638
+
+
+
+
+Leave	Area	Leave Code	Leave Desc	Request Disable Flag
+0112	ALL	ALa	**PAYROLL USE ONLY** Annual Leave - Paid in Advance	Y
+01CV	ALL	COVID-19-AL	COVID-19 Annual Leave	Y
+0203	ALL	PLwoc	Personal Leave Paid without Certificate	Y
+0206	ALL	CL	Carers Leave	N
+0208	ALL	PLUP	Personal Leave Unpaid	Y
+0255	ALL	PLsd	Personal Leave Paid with Stat Dec	Y
+02CV	ALL	COVID-19-PL	COVID-19 Personal Leave	Y
+02CW	ALL	COVID-19-CL	COVID-19 Carers Leave	Y
+0401	ALL	LSLh	**PAYROLL USE ONLY** Long Service Leave - half pay	Y
+0402	ALL	LSLd	**PAYROLL USE ONLY** Long Service Leave - double pay	Y
+04TT	ALL	LSLTTR	**PAYROLL USE ONLY** Long Service Leave TTR	Y
+04TU	ALL	LSLhTTR	**PAYROLL USE ONLY** Long Service Leave - half pay TTR	Y
+04TV	ALL	LSLdTTR	**PAYROLL USE ONLY** Long Service Leave - double pay TTR	Y
+0500	ALL	TIL	Time In Lieu	N
+0602	ALL	COMP	Compassionate Leave	Y
+0603	ALL	Study	Study Leave	N
+0604	ALL	JD	Jury Duty Leave	Y
+0605	ALL	L-WOP	Leave Without Pay	Y
+0608	ALL	HB	Health Break	Y
+0613	ALL	SECup	Secondment Leave Unpaid	Y
+0618	ALL	NOSHOW	No Show - Unauthorised LWOP	Y
+0625	ALL	Mat-unpaid	**PAYROLL USE ONLY** Parental Leave - Unpaid	Y
+0630	ALL	SECupA	Secondment Leave Unpaid - accrual	Y
+0634	ALL	CONF	Conference Leave	N
+0635	ALL	DFL	Defence Force Leave	Y
+0636	ALL	DIL-PH	Day in Lieu of Public Hol Leave	Y
+0638	ALL	SAB	**PAYROLL USE ONLY** Sabbatical Leave	Y
+0639	ALL	SPEC	Special Leave	Y
+0642	ALL	UNION	Union Training	N
+0646	ALL	TRN	Training	Y
+0649	ALL	FLX	Exec Flex Day	N
+0650	ALL	Prof	Professional Development Leave	N
+0651	ALL	SW	Union Meeting Paid	Y
+0652	ALL	SWup	Union Meeting Unpaid	Y
+0655	ALL	EX	Exam Leave	N
+0657	ALL	PAT	**PAYROLL USE ONLY** Parental Leave (Secondary Caregiver)	N
+0664	ALL	PGSD	Post Grad Study	N
+0667	ALL	Mat	**PAYROLL USE ONLY** Parental Leave (Primary Caregiver)	Y
+0669	ALL	Mat-halfpay	**PAYROLL USE ONLY** Parental Leave (Primary Caregiver) - Half Pay	Y
+0673	ALL	PAT-HP	**PAYROLL USE ONLY** Parental Leave (Secondary Caregiver) - Half Pay	N
+0674	ALL	WFH/WFCS	Work from home / Covid Site	Y
+06CH	ALL	COVID-19-HS	COVID-19 Home School	Y
+06CI	ALL	COVID-19-HS1/2	COVID-19 Home School - Half Pay	Y
+06CU	ALL	COVID-19-LWOP	COVID-19 Unpaid Leave	Y
+06CV	ALL	COVID-19-SP	COVID-19 Special Leave	Y
+0700	ALL	WC	**PAYROLL USE ONLY** Work Cover Leave	Y
+08TD	ALL	KIT	Keep in Touch Day	Y
+0911	ALL	PHNW	Public Holiday not Worked	Y
+10	ALL	AL	Annual Leave	N
+13	ALL	AL-No LL	Annual Leave – No Leave Loading	N
+25	ALL	PLc	Personal Leave Paid with Certificate	N
+50	ALL	ADO	Accrued Day Off Leave	N
+57	ALL	PurchL	**PAYROLL USE ONLY** Purchased Leave	Y
+62	ALL	SUB	Substitute Leave	Y
+LPPA	ALL	LPPA	Leave Pending Payroll Approval	Y
+LSL	ALL	LSL	**PAYROLL USE ONLY** Long Service Leave	Y
