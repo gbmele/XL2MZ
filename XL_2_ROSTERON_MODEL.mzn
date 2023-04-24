@@ -10,6 +10,7 @@ include "roster_on_output.mzn";
 include "rosteron_dump.mzn";
 include "xl_2_rosteron_ssu_oncall.mzn";
 
+
 set of int: days  = 1..70; 
 int:        DAYS  =    70;
 

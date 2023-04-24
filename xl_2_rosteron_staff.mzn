@@ -47,7 +47,7 @@ function int: get_empnum(docs: doc) =
         elseif doc = JD then 62948
         elseif doc = CK then 27601
         elseif doc = NM then 56981  %% Nele Manzanares
-        elseif doc = TB then 77777  %% Teresa Bridgart
+        elseif doc = TB then 53686  %% Teresa Bridgart
         
         else 8888888
         endif;

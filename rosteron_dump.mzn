@@ -448,6 +448,7 @@ constraint forall(doc = SK ,d in days)
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d] =  42  then c_cs(doc,d,cll,zz )     % conference
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d] =  43  then c_cs(doc,d,lsll,zz )    % LSL
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=   45  then c_cs(doc,d,matll,zz )    % mat leave
+             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=   48  then c_cs(doc,d,SABB,zz )    % sabbitical leave
 
              else     c_cs(doc,d,zz,zz)
              
@@ -456,16 +457,15 @@ constraint forall(doc = SK ,d in days)
 %BL
 constraint forall(doc = BL ,d in days)
            
-             (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
+             (if      ron(doc,d,c) then  c_cs(doc,d,zz,c818) 
              
-             elseif   (ron(doc,d,p) /\ p mod 7 = thursday) then c_cs(doc,d,p1624,c1416)  
+             elseif   (ron(doc,d,p) /\ p mod 7 in {monday,tuesday,wednesday,thursday,friday,saturday}) then c_cs(doc,d,p1624,c1416)  
 
              elseif   (ron(doc,d,p) /\ p mod 7 = sunday ) then c_cs(doc,d,p1624,zz)  %sunday pms 
 
-             elseif   (ron(doc,d,p) /\ p mod 7 = friday ) then c_cs(doc,d,p1624,zz)  %sunday pms 
 
-                          elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
-            
+             elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
+
              elseif   ron(doc,d,a)  then c_cs(doc,d,a818,zz) 
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i818,zz)
