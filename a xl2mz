@@ -1,0 +1,28 @@
+XL2MZ   ' excel to minzinc
+given an excel file
+  ROWS docs 
+  COLS 1..DAYS_MAX
+  CELLS requests
+        shifts
+        leave (and or LEAVE types)
+        people with pattens
+  
+  CONVERT --> REQUESTS.XLS --> REQUESTS/ROSTER.mzn
+  
+ROSTER
+  assign SSU      to 1 am person every day
+  assign INCHARGE to 1 am person every day
+  assign ONCALL   to 1 pm person every day
+  
+  assign weekends
+  assign friday pms
+  assign/allocate patterns(monday thursdday)
+  
+  
+ USING ROSTERON_SHIFTS
+                in dzn file (written or created from xl file)
+ 
+ ROSTERON_DUMP
+    roster[doc,day] --> CLIN[doc,day],CST[doc,day]
+    
+    output date/area/shift/role/shift details.
