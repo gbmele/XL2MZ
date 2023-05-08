@@ -1,0 +1,345 @@
+Function darksider_con(Rng As Range) As String
+  Dim cell As Range
+  Dim result As String
+  For Each cell In Rng
+    result = result & cell.Value & ","
+  Next
+  darksider_con = result
+End Function
+
+
+Function mm(v As String)
+  Select Case v
+   Case "A", "AM", "a", "am", "A 08:00-16:30", "A 08:00-17:00", "A 08:00-18:00", "A 08:00-16:00"
+    mm = 1
+    
+   Case "i", "I"
+    mm = 11
+    
+   Case "s", "S"
+    mm = 12
+   
+    
+   Case "P", "PM", "A 14:00-23:59", "A 16:00-23:59", "p"
+    mm = 2
+    
+   Case "AP", "A 00:00-23:59"
+    mm = 3
+   
+   Case "CS", "C", "c", "cs"
+    mm = 4
+   
+   Case "O", "o", "0"
+    mm = "0"
+   
+   'LEAVE
+   Case "AL"  ' annual
+    mm = 41
+   
+   Case "CL"   'conference
+    mm = 42
+   
+   Case "LSL", "LPPA"
+    mm = 43
+   
+   Case "PAT"
+    mm = 44
+   
+   Case "MAT"
+    mm = 45
+   
+   Case "LWOP"
+    mm = 46
+    
+   Case "PERL"  ' personal leave
+    mm = 47
+   
+   Case "sabb", "SABB" ' sabbatical
+    mm = 48
+   
+   Case "PHNW", "PH" ' public holiday not worked
+    mm = 49
+   
+   
+   Case "U", "U 08:00-16:30", "U 08:00-17:00", "U 00:00-23:59", "u"
+
+    mm = 99
+    
+   Case "UA"
+    mm = 91
+   
+   Case "UP"
+    mm = 92
+   
+   Case "77"
+    mm = 77
+   
+   Case "d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8"
+    mm = v
+   
+   Case "OTH"
+    mm = 0
+    
+   Case Else
+    mm = "FAIL------------------------------------------------------------------------->" & v
+  End Select
+  
+End Function
+
+
+Function count_leave(v As String)
+  Select Case v
+      Case "AL", "CL", "LSL", "LPPA", "PAT", "MAT", "LWOP", "PERL", "sabb", "SABB", "PHNW", "PH"
+        count_leave = 1
+      Case Else
+        count_leave = 0
+  End Select
+
+End Function
+
+
+
+Function get_dispatch()
+result = ""
+result = result & "constraint forall(doc in tempdocs , day in 1..DAYS)" & vbCrLf & vbCrLf & vbCrLf
+result = result & "(  if    REQUESTS[ doc, day ] = 99   then   roster[ doc, day ]    =  o" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 41   then   roster[ doc, day ]    =  l  % AL" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 42   then   roster[ doc, day ]    =  l  % CONF" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 43   then   roster[ doc, day ]    =  l  % LSL" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 44   then   roster[ doc, day ]    =  l  % PAT" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 45   then   roster[ doc, day ]    =  l  % MAT" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 46   then   roster[ doc, day ]    =  l  % LWOP" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 47   then   roster[ doc, day ]    =  l  % PERSONAL LEAVE" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 4    then   roster[ doc, day ]    =  c  % csupport" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 1    then   roster[ doc, day ]    =  a" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 2    then   roster[ doc, day ]    =  p" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 3    then  (roster[ doc, day ]    =  p \/ roster[doc,day]= a)" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 91   then   roster[ doc, day ]   !=  a" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 92   then   roster[ doc, day ]   !=  p" & vbCrLf
+result = result & "  elseif REQUESTS[ doc, day ] = 99   then   roster[ doc, day ]    =  o" & vbCrLf
+  
+result = result & "  elseif doc in {CK,LS} then   if REQUESTS[doc,day]=0 then roster[doc,day]=o else true endif" & vbCrLf
+      
+
+result = result & "  else true " & vbCrLf
+result = result & "   endif);" & vbCrLf & vbCrLf & vbCrLf
+
+get_dispatch = result
+
+End Function
+
+
+
+Function make_separate_arrays(Rng As Range) As String
+Dim cell As Range
+  Dim result As String
+  Dim requests As String
+  
+  Dim leave_count_constraint As String
+  Dim leave_counter As Integer
+  
+  Dim doc As String
+  Dim ctr As Integer
+     
+  ctr = 0
+  
+  leave_count_constraint = ""
+  leave_counter = 0
+  
+  ' DONT NEED DISPATCH
+  'result = result & get_dispatch() & vbCrLf
+  
+  requests = requests & "array[docs,1..70] of var int: REQUESTS;" & vbCrLf
+  
+  For Each cell In Rng
+    
+    Let ctr = ctr + 1
+    
+    If ctr Mod 70 = 1 Then
+     doc = cell.Offset(0, -1).Value
+     result = result & "array[1..70] of var int: " & doc & "_requests = array1d(1..70,[" & vbCrLf
+    
+     requests = requests & "constraint REQUESTS[" & doc & ",1..70] = " & doc & "_requests;" & vbCrLf
+    
+    End If
+    
+    If ctr Mod 7 = 0 Then
+      
+      result = result & mm(cell.Value) & "," & vbTab & "% day " & ctr Mod 70 & " " & doc & vbCrLf
+    Else
+      result = result & mm(cell.Value) & "," & vbTab
+    End If
+    
+    leave_counter = leave_counter + count_leave(cell.Value)
+    
+    
+    If ctr Mod 70 = 0 Then result = result & "                            %leave count " & doc & " is " & leave_counter & vbCrLf & vbCrLf
+    If ctr Mod 70 = 0 Then result = result & " ]); % end of array for doc " & doc & vbCrLf & vbCrLf
+               
+               
+    If ctr Mod 70 = 0 Then
+             leave_count_constraint = leave_count_constraint & "constraint count(roster[" & doc & ",..],l) = " & leave_counter & ";" & vbCrLf
+    End If
+    If ctr Mod 70 = 0 Then leave_counter = 0
+    
+    
+    
+  Next cell
+  
+    Open ThisWorkbook.Path & "\this_month.dzn" For Output As #1   ' when doing again and again just over-writes
+    
+   
+   
+    Print #1, result
+    'Print #1, leave_count_constraint & vbCrLf & vbCrLf
+    Print #1, requests
+    Print #1, "%%% put the dates function next"
+    
+    Close #1
+      
+  
+  make_separate_arrays = result
+  
+  
+  Debug.Print result
+
+  Debug.Print leave_count_constraint & vbCrLf & vbCrLf
+  
+  Debug.Print requests
+  
+  Debug.Print "%%% put the dates function next"
+  
+  
+
+
+
+
+End Function
+
+
+Function make_dates(Rng As Range)
+     Dim result As String
+     Dim ctr As Integer
+     Dim date_str As String
+     
+     result = ""
+     ctr = 0
+     
+     For Each cell In Rng
+       cell.NumberFormat = "dd/mm/yyyy"
+       
+       ctr = ctr + 1
+       If ctr = 1 Then
+          result = result & "if     d = 1 then " & Chr(34) & Format(cell.Value, "dd/mm/yyyy") & Chr(34) & vbCrLf
+        Else
+       result = result & "elseif d = " & ctr & " then " & Chr(34) & Format(cell.Value, "dd/mm/yyyy") & Chr(34) & vbCrLf
+        End If
+     Next
+     result = "function string: get_day(days: d) = " & vbCrLf & result
+               
+     result = result & "else " & vbTab & Chr(34) & "nuffin" & Chr(34) & vbCrLf
+     
+     result = result & "endif; % end of the big if"
+          
+    Debug.Print result
+End Function
+
+
+Function test_me(Rng As Range)
+
+  For Each cell In Rng
+    If cell.Value = "" Then cell.Value = 0
+    
+  Next
+
+End Function
+
+
+Function load_employees(Rng As Range)
+
+'' just use one column
+
+Dim ctr      As Integer
+Dim num_rows, num_cols As Integer
+
+Dim result As String
+
+ctr = 0
+result = "function int: get_empnum(docs: doc) = " & vbCrLf
+
+
+  For Each cell In Rng
+   Let ctr = ctr + 1
+   
+   If ctr = 1 Then
+                    result = result & "    if doc = " & cell & " then " & cell.Offset(0, 1) & vbCrLf
+    Else
+                    result = result & "elseif doc = " & cell & " then " & cell.Offset(0, 1) & vbCrLf
+   End If
+  Next
+  
+                    result = result & " else 888888" & vbCrLf
+                    result = result & " endif; % end of building employee numbers" & vbCrLf & vbCrLf
+   
+  result = result & "function int: get_role(docs: doc) = " & vbCrLf
+  
+
+
+  result = result & " if doc = " & Rng(1) & " then " & Rng(1).Offset(0, 5) & vbCrLf
+  For i = 2 To Rng.Rows.Count
+    result = result & "elseif doc = " & Rng(i) & " then " & Rng(i).Offset(0, 5) & vbCrLf
+  Next
+  
+  
+  result = result & " else ""nuffin"" " & vbCrLf
+  result = result & " endif; % end of roles" & vbCrLf & vbCrLf
+   
+  
+  Open ThisWorkbook.Path & "\empnum_role.txt" For Output As #1   ' when doing again and again just over-writes
+  Print #1, result
+  Close #1
+
+
+Debug.Print num_rows, num_cols
+Debug.Print "ddone"
+Debug.Print result
+load_employees = result
+
+End Function
+
+
+Function build_shifts_with_one_column(one_column As Range)
+
+' the range is the first collum
+' then the offsets become the fields
+
+'OFFSETS
+Description = 1
+Area = 2
+Start = 3
+Finish = 4
+ocfrom = 5
+octo = 6
+Hours = 7
+result = ""
+
+For i = 1 To one_column.Rows.Count
+
+        result = result & one_column(i) & "  " & vbCrLf
+        result = result & one_column(i).Offset(0, Description) & " " & vbCrLf
+        result = result & Format(one_column(i).Offset(0, Start), "hh:mm") & " " & vbCrLf
+        result = result & Format(one_column(i).Offset(0, Finish), "hh:mm") & " " & vbCrLf
+        result = result & Format(one_column(i).Offset(0, ocfrom), "hh:mm") & " " & vbCrLf
+        result = result & Format(one_column(i).Offset(0, octo), "hh:mm") & " " & vbCrLf
+        result = result & Format(one_column(i).Offset(0, Hours), "0.00") & " " & vbCrLf
+'Format(1234567.89, "#,##0.00")
+Next i
+
+
+build_shifts_with_one_column = result
+Debug.Print result
+
+End Function
+
+
+
