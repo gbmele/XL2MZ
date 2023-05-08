@@ -708,9 +708,10 @@ constraint forall(doc = CK ,d in days)
            
              (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
              
-             elseif   (ron(doc,d,p) /\ d mod 7 = friday) then c_cs(doc,d,p1424,zz)  
+             elseif   (ron(doc,d,p) /\ d mod 7 in weekdays) then c_cs(doc,d,p1624,c1416)  
 
-             elseif   ron(doc,d,p) then c_cs(doc,d,p1424,zz)  
+
+             elseif   (ron(doc,d,p) /\ d mod 7 in weekends) then c_cs(doc,d,p1424,zz)  
 
              elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
             
@@ -748,15 +749,15 @@ constraint forall(doc = NM ,d in days)
 
 constraint forall(doc = TB ,d in days)
            
-             (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
+             (if      ron(doc,d,c) then  c_cs(doc,d,zz,c1216) 
              
-             elseif   ron(doc,d,p) then c_cs(doc,d,p1624,c1416)  
+             elseif   ron(doc,d,p) then c_cs(doc,d,p1424,zz)  
 
-             elseif   ron(doc,d,s)  then c_cs(doc,d,s816,c1618)
+             elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
             
-             elseif   ron(doc,d,a)  then c_cs(doc,d,a816,c1618) 
+             elseif   ron(doc,d,a)  then c_cs(doc,d,a818,zz) 
              
-             elseif   ron(doc,d,i)  then c_cs(doc,d,i816,c1618)
+             elseif   ron(doc,d,i)  then c_cs(doc,d,i818,zz)
              
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,all,zz )  
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cll,zz )  

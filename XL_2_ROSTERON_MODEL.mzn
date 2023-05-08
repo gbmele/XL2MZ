@@ -1,14 +1,22 @@
-%%GET SABB CODE
-%%GET PHNW CODE 
-%% teresa employee number abd area
 
-include "globals.mzn";
-include "xl_2_rosteron.dzn";
-include "this_month.dzn";             %exported from excel    %% here can do this_month_requests_off_leave_then_assign_weekends...
-include "xl_2_rosteron_staff.mzn";
+include "globals.mzn";                      %% global_cardinality 
+
+include "XL_2_ROSTERON_DATA.mzn";
+
+
+include "this_month.dzn";             %exported from excel   
+
+
+%% assign weekends
+%% assign fridays
+%% assign other days
+
 include "roster_on_output.mzn";
 include "rosteron_dump.mzn";
-include "xl_2_rosteron_ssu_oncall.mzn";
+
+
+include "XL_2_ROSTERON_ssu_oncall_incharge.mzn";
+
 
 
 set of int: days  = 1..70; 
@@ -20,9 +28,6 @@ enum shifts = {o,a,p,c,l,s,i,dummy_shift};
 
 enum docs = {RG,GM,DB,CC,MC,SD,ML,HL,DL,RM,GN,EW,LB,DH,SK,BL,CP,RP,AR,LS,AV,LC,KM,DZ,BB,JD,CK,NM,TB};
 
-array [docs] of var int: doc_num = 
-
- array1d(docs,[1011,222,333,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]);
 
 
 %USE CASE
@@ -102,60 +107,3 @@ output [show(count(roster[..,day],i)) ++ " " ++ if day mod 7 = sunday then "|" e
 output[show(shifts)];
 
 
-
-
-
-%%    ron(doc,d,p) then c_cs(doc,d,p1624,c1416)  
-/*
-function var bool: on_ssu(docs:doc, days:d) =
-               if display_ssu[d]=doc then true else false endif;
-
-function var bool: in_charge(docs:doc, days:d) =
-               if display_incharge[d]=doc then true else false endif;
-
-function var bool: on_am(docs:doc, days:d)=
-               if roster[doc,d]=a then true else false endif; 
-
-function var bool: on_pm(docs:doc, days:d)=
-               if roster[doc,d]=p then true else false endif; 
-
-function var bool: on_cs(docs:doc, days:d)=
-               if roster[doc,d]=c then true else false endif; 
-               
-function var bool: on_al(docs:doc, days:d) =
-               if roster[doc,d]=l /\ REQUESTS[doc,d]=  41 then true else false endif;
-
-function var bool: on_cl(docs:doc, days:d) =
-               if roster[doc,d]=l /\ REQUESTS[doc,d]=  42 then true else false endif;
-
-function var bool: on_lsl(docs:doc, days:d) =
-               if roster[doc,d]=l /\ REQUESTS[doc,d]=  43 then true else false endif;
-
-function var bool: on_patl(docs:doc, days:d) =
-               if roster[doc,d]=l /\ REQUESTS[doc,d]=  44 then true else false endif;
-
-function var bool: on_matl(docs:doc, days:d) =
-               if roster[doc,d]=l /\ REQUESTS[doc,d]=  45 then true else false endif;
-
-function var bool: on_perl(docs:doc, days:d) =
-               if roster[doc,d]=l /\ REQUESTS[doc,d]=  46 then true else false endif;
-
-constraint forall (doc = RG,d in days)
-   (if       on_ssu(doc,d)            then c_cs(doc,d,s818,zz)
-   elseif in_charge(doc,d)            then c_cs(doc,d,i818,zz) 
-   elseif     on_am(doc,d)            then c_cs(doc,d,a818,zz)
-   elseif     on_cs(doc,d)            then c_cs(doc,d,zz,c818)
-   elseif     on_pm(doc,d)            then c_cs(doc,d,p1624,c1416)
-   elseif     on_al(doc,d)            then c_cs(doc,d,al,zz )  
-   elseif     on_cl(doc,d)            then c_cs(doc,d,cl,zz )  
-   elseif    on_lsl(doc,d)            then c_cs(doc,d,lsl,zz)  
-   elseif    on_patl(doc,d)            then c_cs(doc,d,lsl,zz)  
-   elseif    on_matl(doc,d)            then c_cs(doc,d,lsl,zz)  
-   elseif    on_perl(doc,d)            then c_cs(doc,d,lsl,zz)  
-   else                                    c_cs(doc,d,zz,zz )
-   endif
-   ); 
-*/
-
-
-%%ONE WEEK AT TIME  ONCALL AT TOP   WITH CLINICAL THEN CLINICAL SUPPORT 
