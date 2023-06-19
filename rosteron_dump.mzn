@@ -9,6 +9,7 @@ int: mat_leave            = 45;
 
 
 array[docs,days] of var shifts: RON;
+array[docs,days] of var shifts2: RON2;
 
 
 
@@ -25,6 +26,31 @@ constraint forall(doc in docs, day in days)
                  else RON[doc,day] = roster[doc,day]
                  
                  endif);
+%%RON2
+constraint forall(doc in docs, day in days)(
+  
+                
+                 if   (roster[doc,day] =l /\ REQUESTS[doc,day] = 41) then RON2[doc,day]=all  
+
+             elseif   (roster[doc,day] =l /\ REQUESTS[doc,day] = 42) then RON2[doc,day]=cll  
+
+             elseif   (roster[doc,day] =l /\ REQUESTS[doc,day] = 43) then RON2[doc,day]=lsll  
+
+             elseif   (roster[doc,day] =l /\ REQUESTS[doc,day] = 45) then RON2[doc,day]=matll 
+
+             elseif   (roster[doc,day] =l /\ REQUESTS[doc,day] = 47) then RON2[doc,day]=perll
+
+             elseif   (roster[doc,day] =l /\ REQUESTS[doc,day] = 48) then RON2[doc,day]=SABB
+
+             elseif   (roster[doc,day] =l /\ REQUESTS[doc,day] = 49) then RON2[doc,day]=PHNW
+
+             
+             else RON2[doc,day]=zz
+             endif);
+
+
+
+
 
 predicate c_cs(docs:doc,days:day,shifts2:c,shifts2:cs) =
                     Clin[doc,day]=c /\ CST[doc,day]=cs;
@@ -448,7 +474,6 @@ constraint forall(doc = SK ,d in days)
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d] =  42  then c_cs(doc,d,cll,zz )     % conference
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d] =  43  then c_cs(doc,d,lsll,zz )    % LSL
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=   45  then c_cs(doc,d,matll,zz )    % mat leave
-             elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=   48  then c_cs(doc,d,SABB,zz )    % sabbitical leave
 
              else     c_cs(doc,d,zz,zz)
              
@@ -457,15 +482,16 @@ constraint forall(doc = SK ,d in days)
 %BL
 constraint forall(doc = BL ,d in days)
            
-             (if      ron(doc,d,c) then  c_cs(doc,d,zz,c818) 
+             (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
              
-             elseif   (ron(doc,d,p) /\ p mod 7 in {monday,tuesday,wednesday,thursday,friday,saturday}) then c_cs(doc,d,p1624,c1416)  
+             elseif   (ron(doc,d,p) /\ p mod 7 = thursday) then c_cs(doc,d,p1624,c1416)  
 
              elseif   (ron(doc,d,p) /\ p mod 7 = sunday ) then c_cs(doc,d,p1624,zz)  %sunday pms 
 
+             elseif   (ron(doc,d,p) /\ p mod 7 = friday ) then c_cs(doc,d,p1624,zz)  %sunday pms 
 
-             elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
-
+                          elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
+            
              elseif   ron(doc,d,a)  then c_cs(doc,d,a818,zz) 
              
              elseif   ron(doc,d,i)  then c_cs(doc,d,i818,zz)
@@ -708,10 +734,9 @@ constraint forall(doc = CK ,d in days)
            
              (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
              
-             elseif   (ron(doc,d,p) /\ d mod 7 in weekdays) then c_cs(doc,d,p1624,c1416)  
+             elseif   (ron(doc,d,p) /\ d mod 7 = friday) then c_cs(doc,d,p1424,zz)  
 
-
-             elseif   (ron(doc,d,p) /\ d mod 7 in weekends) then c_cs(doc,d,p1424,zz)  
+             elseif   ron(doc,d,p) then c_cs(doc,d,p1424,zz)  
 
              elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
             
@@ -749,15 +774,15 @@ constraint forall(doc = NM ,d in days)
 
 constraint forall(doc = TB ,d in days)
            
-             (if      ron(doc,d,c) then  c_cs(doc,d,zz,c1216) 
+             (if      ron(doc,d,c) then  c_cs(doc,d,zz,zz) 
              
-             elseif   ron(doc,d,p) then c_cs(doc,d,p1424,zz)  
+             elseif   ron(doc,d,p) then c_cs(doc,d,p1624,c1416)  
 
-             elseif   ron(doc,d,s)  then c_cs(doc,d,s818,zz)
+             elseif   ron(doc,d,s)  then c_cs(doc,d,s816,c1618)
             
-             elseif   ron(doc,d,a)  then c_cs(doc,d,a818,zz) 
+             elseif   ron(doc,d,a)  then c_cs(doc,d,a816,c1618) 
              
-             elseif   ron(doc,d,i)  then c_cs(doc,d,i818,zz)
+             elseif   ron(doc,d,i)  then c_cs(doc,d,i816,c1618)
              
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  41  then c_cs(doc,d,all,zz )  
              elseif   ron(doc,d,l) /\ REQUESTS[doc,d]=  42  then c_cs(doc,d,cll,zz )  

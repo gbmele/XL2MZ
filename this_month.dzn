@@ -1,15 +1,15 @@
 array[1..70] of var int: GM_requests = array1d(1..70,[
-4,	2,	0,	4,	4,	0,	0,	% day 7 GM
+4,	2,	0,	4,	4,	0,	91,	% day 7 GM
 4,	2,	99,	4,	4,	0,	0,	% day 14 GM
 4,	2,	0,	4,	4,	99,	99,	% day 21 GM
-4,	2,	0,	4,	0,	0,	1,	% day 28 GM
-4,	2,	99,	4,	0,	0,	1,	% day 35 GM
+4,	2,	0,	4,	0,	0,	8,	% day 28 GM
+4,	2,	99,	4,	0,	0,	8,	% day 35 GM
 4,	2,	0,	4,	4,	0,	0,	% day 42 GM
-41,	41,	41,	41,	4,	99,	99,	% day 49 GM
-47,	47,	47,	47,	0,	99,	99,	% day 56 GM
+4,	2,	0,	4,	4,	99,	99,	% day 49 GM
+4,	2,	0,	4,	4,	99,	99,	% day 56 GM
 47,	47,	47,	47,	0,	99,	99,	% day 63 GM
 47,	47,	47,	47,	0,	99,	99,	% day 0 GM
-                            %leave count GM is 16
+                            %leave count GM is 12
 
  ]); % end of array for doc GM
 
@@ -17,8 +17,8 @@ array[1..70] of var int: RG_requests = array1d(1..70,[
 4,	4,	4,	2,	0,	0,	99,	% day 7 RG
 4,	4,	4,	2,	0,	0,	99,	% day 14 RG
 41,	41,	41,	41,	0,	99,	99,	% day 21 RG
-4,	4,	4,	0,	0,	1,	99,	% day 28 RG
-4,	4,	4,	99,	0,	1,	99,	% day 35 RG
+4,	4,	4,	0,	0,	8,	99,	% day 28 RG
+4,	4,	4,	99,	0,	8,	99,	% day 35 RG
 4,	4,	4,	2,	0,	0,	99,	% day 42 RG
 41,	41,	41,	41,	0,	99,	99,	% day 49 RG
 41,	41,	41,	41,	0,	99,	99,	% day 56 RG
@@ -29,136 +29,146 @@ array[1..70] of var int: RG_requests = array1d(1..70,[
  ]); % end of array for doc RG
 
 array[1..70] of var int: DB_requests = array1d(1..70,[
-0,	1,	0,	1,	2,	0,	0,	% day 7 DB
-1,	2,	0,	1,	0,	1,	1,	% day 14 DB
-1,	1,	0,	1,	2,	0,	0,	% day 21 DB
-1,	2,	0,	1,	1,	99,	99,	% day 28 DB
+8,	8,	8,	8,	8,	8,	8,	% day 7 DB
+8,	8,	8,	8,	8,	8,	8,	% day 14 DB
+8,	8,	8,	8,	8,	8,	8,	% day 21 DB
+8,	8,	8,	8,	8,	99,	99,	% day 28 DB
 42,	42,	42,	42,	0,	99,	99,	% day 35 DB
 42,	42,	42,	42,	0,	99,	99,	% day 42 DB
-1,	2,	0,	0,	1,	2,	2,	% day 49 DB
-0,	2,	0,	1,	1,	0,	0,	% day 56 DB
-1,	2,	0,	1,	1,	0,	0,	% day 63 DB
-1,	2,	0,	1,	1,	0,	0,	% day 0 DB
+8,	8,	8,	8,	8,	8,	8,	% day 49 DB
+8,	8,	8,	8,	8,	8,	8,	% day 56 DB
+8,	8,	8, 8,	8,	8,	8,	% day 63 DB
+8,	8,	8,	8,	8,	8,	8,	% day 0 DB
                             %leave count DB is 8
 
  ]); % end of array for doc DB
 
+constraint count(roster[DB,..],l,8);
+
+
 array[1..70] of var int: MC_requests = array1d(1..70,[
-0,	1,	2,	4,	1,	0,	0,	% day 7 MC
-0,	1,	2,	4,	0,	1,	0,	% day 14 MC
-0,	1,	2,	4,	0,	2,	0,	% day 21 MC
-0,	1,	2,	4,	1,	0,	0,	% day 28 MC
-1,	0,	2,	4,	99,	1,	99,	% day 35 MC
-1,	1,	0,	4,	2,	0,	0,	% day 42 MC
+8,	8,	8,	8,	8,	8, 8,	% day 7 MC
+8,	8,	8,	8,	8,	8,	8,	% day 14 MC
+8,	8,	8,	8,	0,	8,	8,	% day 21 MC
+8,	8,	8,	8,	1,	8,	8,	% day 28 MC
+8,	8,	8,	8,	8,	8,	8,	% day 35 MC
+8,	8,	8,	8,	2,	8,	8,	% day 42 MC
 41,	41,	41,	41,	0,	99,	99,	% day 49 MC
-0,	0,	2,	4,	1,	1,	0,	% day 56 MC
-0,	1,	1,	4,	1,	0,	0,	% day 63 MC
+8,	8,	8,	8,	8,	8,	8,	% day 56 MC
+8,	8,	8,	8,	8,	8,	8,	% day 63 MC
 42,	42,	42,	42,	0,	99,	99,	% day 0 MC
                             %leave count MC is 8
 
  ]); % end of array for doc MC
 
 array[1..70] of var int: CC_requests = array1d(1..70,[
-2,	0,	1,	1,	0,	2,	2,	% day 7 CC
-0,	0,	1,	1,	2,	0,	0,	% day 14 CC
-1,	1,	1,	1,	99,	0,	0,	% day 21 CC
-2,	0,	1,	1,	1,	99,	99,	% day 28 CC
+8,	8,	8,	8,	8,	8,	8,	% day 7 CC
+8,	8,	8,	8,	8,	8,	8,	% day 14 CC
+8,	8,	8,	8,	8,	0,	0,	% day 21 CC
+8,	8,	8,	8,	8,	99,	99,	% day 28 CC
 42,	42,	42,	42,	0,	99,	99,	% day 35 CC
-2,	0,	1,	1,	1,	0,	0,	% day 42 CC
-2,	0,	1,	1,	1,	0,	0,	% day 49 CC
-2,	0,	1,	1,	1,	0,	0,	% day 56 CC
-2,	0,	0,	1,	0,	1,	1,	% day 63 CC
-2,	0,	1,	1,	1,	0,	0,	% day 0 CC
+8,	8,	8,	8,	8,	8,	8,	% day 42 CC
+8,	8,	8,	8,	8,	8,	8,	% day 49 CC
+8,	8,	8,	8,	8,	8,	8,	% day 56 CC
+8,	8,	8,	8,	8,	8,	8,	% day 63 CC
+8,	8,	8,	8,	8,	8,	8,	% day 0 CC
                             %leave count CC is 4
 
  ]); % end of array for doc CC
 
+
+constraint count(roster[CC,..],l,4);
+
 array[1..70] of var int: SD_requests = array1d(1..70,[
-1,	4,	0,	2,	99,	2,	0,	% day 7 SD
-1,	4,	1,	2,	99,	99,	99,	% day 14 SD
+8,	8,	8,	8,	8,	8,	8,	% day 7 SD
+8,	8,	8,	8,	99,	99,	99,	% day 14 SD
 42,	42,	42,	42,	0,	99,	99,	% day 21 SD
-4,	1,	1,	2,	0,	0,	0,	% day 28 SD
-0,	4,	1,	2,	0,	0,	1,	% day 35 SD
-1,	1,	4,	2,	0,	0,	0,	% day 42 SD
-4,	1,	0,	2,	0,	0,	1,	% day 49 SD
-4,	1,	1,	0,	2,	0,	0,	% day 56 SD
-1,	1,	4,	0,	2,	0,	0,	% day 63 SD
-1,	0,	4,	2,	0,	2,	0,	% day 0 SD
+8,	8,	8,	8,	8,	8,	8,	% day 28 SD
+8,	8,	8,	8,	8,	8,	8,	% day 35 SD
+8,	8,	8,	8,	8,	8,	8,	% day 42 SD
+8,	8,	8,	8,	8,	8,	8,	% day 49 SD
+8,	8,	8,	8,	8,	8,	8,	% day 56 SD
+8,	8,	8,	8,	8,	8,	8,	% day 63 SD
+8,	8,	8,	8,	8,	8,	8,	% day 0 SD
                             %leave count SD is 4
 
  ]); % end of array for doc SD
+constraint count(roster[SD,..],l,4);
+
 
 array[1..70] of var int: HL_requests = array1d(1..70,[
-2,	0,	4,	1,	1,	0,	0,	% day 7 HL
-1,	1,	4,	2,	0,	0,	0,	% day 14 HL
-0,	1,	4,	2,	0,	1,	1,	% day 21 HL
-0,	0,	4,	1,	2,	0,	0,	% day 28 HL
-2,	0,	4,	1,	1,	0,	0,	% day 35 HL
-0,	1,	4,	2,	0,	1,	2,	% day 42 HL
-0,	0,	4,	1,	2,	0,	0,	% day 49 HL
-1,	1,	4,	2,	0,	0,	0,	% day 56 HL
+8,	8,	8,	8,	8,	8,	8,	% day 7 HL
+8,	8,	8,	8,	8,	8,	8,	% day 14 HL
+8,	8,	8,	8,	8,	8,	8,	% day 21 HL
+8,	8,	8,	8,	8,	8,	8,	% day 28 HL
+8,	8,	8,	8,	8,	8,	8,	% day 35 HL
+8,	8,	8,	8,	8,	8,	8,	% day 42 HL
+8,	8,	8,	8,	8,	8,	8,	% day 49 HL
+8,	8,	8,	8,	8,	8,	8,	% day 56 HL
 41,	41,	41,	41,	0,	99,	99,	% day 63 HL
 42,	42,	42,	42,	99,	99,	99,	% day 0 HL
                             %leave count HL is 8
 
  ]); % end of array for doc HL
+constraint count(roster[HL,..],l,8);
 
 array[1..70] of var int: DL_requests = array1d(1..70,[
-1,	2,	4,	0,	1,	0,	0,	% day 7 DL
-1,	2,	4,	0,	1,	99,	99,	% day 14 DL
-1,	2,	4,	0,	1,	2,	2,	% day 21 DL
-0,	0,	4,	0,	2,	99,	99,	% day 28 DL
-99,	2,	4,	0,	1,	99,	99,	% day 35 DL
-1,	2,	4,	0,	1,	99,	99,	% day 42 DL
+8,	8,	8,	0,	8,	8,	8,	% day 7 DL
+8,	8,	8,	0,	8,	8,	8,	% day 14 DL
+8,	8,	8,	0,	8,	8,	8,	% day 21 DL
+8,	8,	8,	0,	8,	8,	8,	% day 28 DL
+8,	8,	8,	0,	8,	8,	8,	% day 35 DL
+8,	8,	8,	0,	8,	8,	8,	% day 42 DL
 41,	41,	41,	41,	0,	99,	99,	% day 49 DL
 41,	41,	41,	41,	0,	99,	99,	% day 56 DL
 41,	41,	41,	41,	0,	99,	99,	% day 63 DL
-0,	2,	4,	0,	0,	1,	1,	% day 0 DL
+8,	8,	8,	0,	8,	8,	8,	% day 0 DL
                             %leave count DL is 12
 
  ]); % end of array for doc DL
 
 array[1..70] of var int: RM_requests = array1d(1..70,[
-1,	2,	4,	0,	0,	1,	1,	% day 7 RM
-0,	1,	4,	1,	2,	0,	0,	% day 14 RM
-1,	2,	4,	0,	1,	0,	0,	% day 21 RM
-1,	2,	0,	42,	42,	99,	99,	% day 28 RM
-99,	1,	4,	1,	1,	0,	0,	% day 35 RM
-1,	2,	4,	0,	0,	1,	1,	% day 42 RM
-0,	1,	4,	1,	2,	0,	0,	% day 49 RM
-1,	2,	4,	1,	99,	99,	99,	% day 56 RM
+8,	8,	8,	8,	8,	8,	8,	% day 7 RM
+8,	8,	8,	8,	8,	8,	8,	% day 14 RM
+8,	8,	8,	8,	8,	8,	8,	% day 21 RM
+8,	8,	8,	8,	8,	99,	99,	% day 28 RM
+8,	8,	8,	8,	8,	8,	8,	% day 35 RM
+8,	8,	8,	8,	8,	8,	8,	% day 42 RM
+8,	8,	8,	8,	8,	8,	8,	% day 49 RM
+8,	8,	8,	8,	99,	99,	99,	% day 56 RM
 43,	43,	43,	43,	99,	99,	99,	% day 63 RM
 43,	43,	43,	43,	0,	99,	99,	% day 0 RM
                             %leave count RM is 10
 
  ]); % end of array for doc RM
+constraint count(roster[RM,..],l,8);
 
 array[1..70] of var int: GN_requests = array1d(1..70,[
-2,	0,	2,	43,	0,	2,	0,	% day 7 GN
-2,	0,	2,	43,	0,	2,	0,	% day 14 GN
-2,	0,	2,	43,	0,	2,	0,	% day 21 GN
-2,	0,	2,	43,	0,	2,	0,	% day 28 GN
-2,	0,	2,	43,	0,	2,	0,	% day 35 GN
-2,	0,	2,	43,	0,	2,	0,	% day 42 GN
-2,	0,	2,	43,	0,	2,	0,	% day 49 GN
-2,	0,	2,	43,	0,	2,	0,	% day 56 GN
-2,	0,	2,	43,	0,	2,	0,	% day 63 GN
-2,	0,	2,	43,	0,	2,	0,	% day 0 GN
+8,	0,	8,	4,	0,	2,	0,	% day 7 GN
+8,	0,	8,	4,	0,	2,	0,	% day 14 GN
+8,	0,	8,	4,	0,	2,	0,	% day 21 GN
+8,	0,	8,	4,	0,	2,	0,	% day 28 GN
+8,	0,	8,	8,	0,	2,	0,	% day 35 GN
+8,	0,	8,	8,	0,	2,	0,	% day 42 GN
+8,	0,	8,	8,	0,	2,	0,	% day 49 GN
+8,	0,	8,	8,	0,	2,	0,	% day 56 GN
+8,	0,	2,	8,	0,	2,	0,	% day 63 GN
+8,	0,	2,	8,	0,	2,	0,	% day 0 GN
                             %leave count GN is 10
 
  ]); % end of array for doc GN
 
 array[1..70] of var int: EW_requests = array1d(1..70,[
-0,	99,	1,	1,	2,	0,	0,	% day 7 EW
-0,	1,	2,	4,	1,	99,	99,	% day 14 EW
-0,	99,	2,	4,	1,	0,	0,	% day 21 EW
-0,	4,	1,	1,	2,	99,	99,	% day 28 EW
-0,	1,	1,	2,	4,	0,	0,	% day 35 EW
-0,	1,	1,	4,	2,	0,	0,	% day 42 EW
-41,	41,	41,	0,	0,	99,	99,	% day 49 EW
-99,	0,	0,	4,	1,	2,	2,	% day 56 EW
-0,	0,	2,	4,	1,	0,	0,	% day 63 EW
-0,	1,	2,	4,	0,	1,	1,	% day 0 EW
+0,	8,	8,	8,	8,	8,	8,	% day 7 EW
+0,	8,	8,	8,	8,	8,	8,	% day 14 EW
+0,	8,	8,	8,	8,	8,	8,	% day 21 EW
+0,	8,	8,	8,	8,	8,	8,	% day 28 EW
+0,	8,	8,	8,	8,	8,	8,	% day 35 EW
+0,	8,	8,	8,	8,	8,	8,	% day 42 EW
+0,	8,	8,	8,	8,	8,	8,	% day 49 EW
+0,	8,	8,	8,	8,	8,	8,	% day 56 EW
+0,	0,	8,	8,	8,	8,	8,	% day 63 EW
+0,	8,	8,	8,	8,	8,	8,	% day 0 EW
                             %leave count EW is 3
 
  ]); % end of array for doc EW
@@ -179,49 +189,54 @@ array[1..70] of var int: BB_requests = array1d(1..70,[
  ]); % end of array for doc BB
 
 array[1..70] of var int: LB_requests = array1d(1..70,[
-0,	0,	41,	0,	41,	99,	99,	% day 7 LB
-2,	0,	1,	0,	1,	99,	99,	% day 14 LB
+41,	0,	41,	0,	41,	99,	99,	% day 7 LB
+8,	0,	8,	0,	8,	8,	8,	% day 14 LB
 42,	0,	42,	0,	42,	99,	99,	% day 21 LB
-48,	0,	48,	0,	48,	99,	99,	% day 28 LB
-48,	0,	48,	0,	48,	0,	0,	% day 35 LB
-48,	0,	48,	0,	48,	0,	0,	% day 42 LB
-48,	0,	48,	0,	48,	99,	99,	% day 49 LB
-48,	0,	48,	0,	48,	0,	0,	% day 56 LB
-48,	0,	48,	0,	48,	0,	0,	% day 63 LB
-48,	0,	48,	0,	48,	0,	0,	% day 0 LB
-                            %leave count LB is 26
+8,	0,	8,	0,	8,	8,	8,	% day 28 LB
+8,	0,	8,	0,	8,	8,	8,	% day 35 LB
+8,	0,	8,	0,	8,	8,	8,	% day 42 LB
+8,	0,	8,	0,	8,	8,	8,	% day 49 LB
+8,	0,	8,	0,	8,	8,	8,	% day 56 LB
+8,	0,	8,	0,	8,	8,	8,	% day 63 LB
+8,	0,	8,	0,	8,	8,	8,	% day 0 LB
+                            %leave count LB is 5
 
  ]); % end of array for doc LB
+constraint count(roster[LB,..],l,6);
 
 array[1..70] of var int: LC_requests = array1d(1..70,[
-0,	2,	0,	2,	0,	0,	0,	% day 7 LC
-0,	2,	0,	2,	0,	0,	0,	% day 14 LC
-0,	2,	0,	2,	0,	99,	0,	% day 21 LC
-0,	2,	0,	99,	0,	1,	1,	% day 28 LC
-0,	2,	0,	2,	0,	0,	0,	% day 35 LC
-0,	2,	0,	2,	0,	1,	2,	% day 42 LC
-0,	2,	0,	2,	0,	99,	0,	% day 49 LC
-0,	2,	0,	2,	0,	0,	0,	% day 56 LC
-0,	2,	0,	2,	0,	0,	0,	% day 63 LC
-0,	2,	0,	2,	0,	0,	99,	% day 0 LC
+0,	8,	0,	8,	0,	8,	8,	% day 7 LC
+0,	8,	0,	8,	0,	8,	8,	% day 14 LC
+0,	8,	0,	8,	0,	8,	8,	% day 21 LC
+0,	8,	0,	8,	0,	8,	8,	% day 28 LC
+0,	8,	0,	8,	0,	8,	8,	% day 35 LC
+0,	8,	0,	8,	0,	8,	8,	% day 42 LC
+0,	8,	0,	8,	0,	8,	8,	% day 49 LC
+0,	8,	0,	8,	0,	8,	8,	% day 56 LC
+0,	8,	0,	8,	0,	8,	8,	% day 63 LC
+0,	8,	0,	8,	0,	8,	8,	% day 0 LC
                             %leave count LC is 0
-
  ]); % end of array for doc LC
 
+constraint count(roster[LC,..],l,0);
+
+
 array[1..70] of var int: DH_requests = array1d(1..70,[
-1,	0,	4,	0,	2,	99,	99,	% day 7 DH
-2,	0,	4,	0,	1,	2,	2,	% day 14 DH
-0,	0,	4,	0,	2,	99,	99,	% day 21 DH
-2,	0,	4,	0,	1,	99,	99,	% day 28 DH
-42,	42,	42,	0,	0,	99,	99,	% day 35 DH
-41,	41,	41,	0,	0,	99,	99,	% day 42 DH
-41,	41,	41,	0,	0,	99,	99,	% day 49 DH
-41,	41,	41,	0,	0,	99,	99,	% day 56 DH
+8,	0,	4,	0,	8,	8,	8,	% day 7 DH
+8,	0,	4,	0, 8,	8,	8,	% day 14 DH
+8,	0,	4,	0,	8,	8,	8,	% day 21 DH
+8,	0,	4,	0,	8,	8,	8,	% day 28 DH
+8,	8,	8,	0,	8,	8,	8,	% day 35 DH
+8,	8,	8,	0,	8,	8,	8,	% day 42 DH
+8,	8,	8,	0,	8,	8,	8,	% day 49 DH
+8,	8,	8,	0,	8,	8,	8,	% day 56 DH
 41,	41,	41,	0,	0,	99,	99,	% day 63 DH
 41,	41,	41,	0,	0,	99,	99,	% day 0 DH
                             %leave count DH is 18
 
  ]); % end of array for doc DH
+constraint count(roster[DH,..],l,6);
+
 
 array[1..70] of var int: SK_requests = array1d(1..70,[
 45,	45,	45,	0,	0,	0,	0,	% day 7 SK
@@ -238,6 +253,8 @@ array[1..70] of var int: SK_requests = array1d(1..70,[
 
  ]); % end of array for doc SK
 
+constraint count(roster[SK,..],l,30);
+
 array[1..70] of var int: BL_requests = array1d(1..70,[
 0,	1,	0,	2,	0,	0,	0,	% day 7 BL
 0,	0,	0,	1,	2,	0,	0,	% day 14 BL
@@ -248,25 +265,26 @@ array[1..70] of var int: BL_requests = array1d(1..70,[
 4,	4,	4,	4,	0,	0,	0,	% day 49 BL
 4,	4,	4,	4,	0,	0,	0,	% day 56 BL
 0,	0,	0,	2,	0,	0,	2,	% day 63 BL
-0,	0,	0,	1,	2,	0,	42,	% day 0 BL
+0,	0,	0,	1,	2,	0,	0,	% day 0 BL
                             %leave count BL is 1
 
  ]); % end of array for doc BL
 
 array[1..70] of var int: ML_requests = array1d(1..70,[
-0,	0,	1,	1,	0,	0,	2,	% day 7 ML
-0,	0,	1,	1,	0,	0,	2,	% day 14 ML
-0,	0,	1,	1,	0,	0,	1,	% day 21 ML
-0,	0,	41,	1,	0,	0,	2,	% day 28 ML
-0,	0,	1,	1,	0,	0,	2,	% day 35 ML
-0,	0,	1,	1,	0,	0,	1,	% day 42 ML
-0,	0,	1,	1,	0,	0,	2,	% day 49 ML
-0,	0,	41,	1,	0,	0,	2,	% day 56 ML
-0,	0,	41,	1,	0,	0,	1,	% day 63 ML
-0,	0,	1,	1,	0,	0,	2,	% day 0 ML
+0,	0,	8,	8,	0,	0,	8,	% day 7 ML
+0,	0,	8,	8,	0,	0,	8,	% day 14 ML
+0,	0,	8,	8,	0,	0,	8,	% day 21 ML
+0,	0,	8,	8,	0,	0,	8,	% day 28 ML
+0,	0,	8,	8,	0,	0,	8,	% day 35 ML
+0,	0,	8,	8,	0,	0,	8,	% day 42 ML
+0,	0,	8,	8,	0,	0,	8,	% day 49 ML
+0,	0,	41,	1,	0,	0,	8,	% day 56 ML
+0,	0,	41,	1,	0,	0,	8,	% day 63 ML
+0,	0,	8,	8,	0,	0,	8,	% day 0 ML
                             %leave count ML is 3
 
  ]); % end of array for doc ML
+constraint count(roster[ML,..],l,2);
 
 array[1..70] of var int: CP_requests = array1d(1..70,[
 0,	0,	1,	0,	0,	0,	0,	% day 7 CP
@@ -284,23 +302,27 @@ array[1..70] of var int: CP_requests = array1d(1..70,[
  ]); % end of array for doc CP
 
 array[1..70] of var int: RP_requests = array1d(1..70,[
-0,	1,	0,	2,	0,	0,	2,	% day 7 RP
-0,	1,	0,	2,	4,	0,	42,	% day 14 RP
-0,	42,	0,	42,	0,	0,	2,	% day 21 RP
-0,	1,	0,	2,	4,	1,	41,	% day 28 RP
-0,	41,	0,	41,	41,	0,	41,	% day 35 RP
-0,	41,	0,	41,	41,	0,	41,	% day 42 RP
-0,	41,	0,	41,	41,	0,	41,	% day 49 RP
-0,	41,	0,	41,	41,	0,	2,	% day 56 RP
-0,	1,	0,	2,	0,	0,	2,	% day 63 RP
-0,	1,	0,	2,	4,	0,	2,	% day 0 RP
+8,	1,	0,	2,	0,	0,	2,	% day 7 RP
+8,	1,	0,	2,	4,	0,	2,	% day 14 RP
+
+8,	1,	0,	2,	0,	0,	2,	% day 21 RP
+8,	1,	0,	2,	4,	0,	2,	% day 28 RP
+
+8,	1,	0,	2,	0,	0,	2,	% day 35 RP
+8,	1,	0,	2,	4,	0,	2,	% day 42 RP
+
+8,	1,	0,	2,	0,	0,	2,	% day 49 RP
+8,	1,	0,	2,	4,	0,	2,	% day 56 RP
+
+8,	1,	0,	2,	0,	0,	2,	% day 63 RP
+8,	1,	0,	2,	4,	0,	2,	% day 0 RP
                             %leave count RP is 19
 
  ]); % end of array for doc RP
 
 array[1..70] of var int: AR_requests = array1d(1..70,[
-0,	0,	1,	1,	0,	0,	0,	% day 7 AR
-0,	1,	1,	0,	0,	0,	0,	% day 14 AR
+0,	0,	8,	8,	0,	0,	0,	% day 7 AR
+0,	0,	8,	8,	0,	0,	0,	% day 14 AR
 0,	0,	1,	0,	0,	1,	0,	% day 21 AR
 0,	0,	1,	1,	0,	0,	0,	% day 28 AR
 0,	0,	1,	1,	0,	0,	0,	% day 35 AR
@@ -336,7 +358,7 @@ array[1..70] of var int: AV_requests = array1d(1..70,[
 42,	42,	42,	0,	0,	99,	99,	% day 35 AV
 46,	46,	46,	0,	0,	99,	99,	% day 42 AV
 46,	46,	4,	2,	2,	0,	0,	% day 49 AV
-0,	4,	4,	2,	2,	0,	0,	% day 56 AV
+0,	4,	4,	2,	0,	1,	1,	% day 56 AV
 0,	1,	4,	4,	2,	2,	0,	% day 63 AV
 2,	4,	4,	0,	1,	1,	1,	% day 0 AV
                             %leave count AV is 8
@@ -376,13 +398,13 @@ array[1..70] of var int: JD_requests = array1d(1..70,[
 array[1..70] of var int: CK_requests = array1d(1..70,[
 0,	2,	99,	99,	99,	1,	1,	% day 7 CK
 2,	2,	99,	99,	99,	0,	0,	% day 14 CK
-2,	0,	2,	99,	42,	42,	42,	% day 21 CK
+1,	1,	2,	99,	42,	42,	42,	% day 21 CK
 42,	0,	0,	0,	0,	2,	2,	% day 28 CK
 2,	0,	0,	99,	99,	2,	2,	% day 35 CK
-2,	0,	2,	99,	99,	99,	0,	% day 42 CK
-2,	2,	2,	99,	99,	2,	2,	% day 49 CK
-2,	0,	2,	99,	0,	2,	0,	% day 56 CK
-2,	2,	0,	99,	99,	1,	2,	% day 63 CK
+0,	1,	2,	99,	99,	99,	0,	% day 42 CK
+1,	2,	2,	99,	99,	2,	2,	% day 49 CK
+2,	0,	2,	99,	0,	2,	2,	% day 56 CK
+0,	2,	0,	99,	99,	1,	2,	% day 63 CK
 41,	41,	41,	41,	0,	2,	2,	% day 0 CK
                             %leave count CK is 8
 
@@ -417,6 +439,8 @@ array[1..70] of var int: KM_requests = array1d(1..70,[
                             %leave count KM is 2
 
  ]); % end of array for doc KM
+ 
+constraint count(roster[KM,..],l,2);
 
 array[1..70] of var int: DZ_requests = array1d(1..70,[
 0,	0,	0,	0,	0,	0,	0,	% day 7 DZ

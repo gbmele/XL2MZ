@@ -40,12 +40,12 @@ string: on_call_dag_end = join(sep,["23:59","07:59","R","N"," "," "," ","N","N",
 %% conference leave =is    
 %% Long Service Leave is ------
 
-string: SABB_shift  = "0638";
+string: SABB_shift  = "SABB";
 string: SABB_shift_start  = "08:00";
 string: SABB_shift_finish = "18:00";
 string: SABB_shift_hours  = "10.00";
 
-string: PHNW_shift  = "0911";
+string: PHNW_shift  = "PHNW";
 string: PHNW_shift_start  = "08:00";
 string: PHNW_shift_finish = "18:00";
 string: PHNW_shift_hours  = "10.00";
@@ -175,7 +175,7 @@ string: c1718_finish  =  "18:00";
 string: c1718_hours   =  "1.00";
 string: c1718_shift_d =  "CST 1700-1800";
 
-                         %"CST 1200-1800-SSU-B0006-01"
+
 string: c1218_shift   =  "CST 1200-1800-SSU-12240-B0006-01";
 string: c1218_start   =  "12:00";
 string: c1218_finish  =  "18:00";
