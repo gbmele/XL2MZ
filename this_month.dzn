@@ -337,7 +337,7 @@ array[1..70] of var int: AR_requests = array1d(1..70,[
 
 array[1..70] of var int: LS_requests = array1d(1..70,[
 99,	1,	2,	0,	1,	1,	0,	% day 7 LS
-0,	2,	99,	0,	0,	0,	0,	% day 14 LS
+0,	0,	2,	0,	0,	0,	0,	% day 14 LS
 99,	0,	0,	0,	1,	1,	1,	% day 21 LS
 0,	0,	2,	0,	0,	0,	0,	% day 28 LS
 99,	99,	2,	0,	2,	2,	0,	% day 35 LS

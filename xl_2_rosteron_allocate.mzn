@@ -1,13 +1,13 @@
   
   
 %STAFF COUNT DAY SHIFT
-constraint forall(d in mondays   )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 2, 2   ],   [  15 , 15     ]  )); %mon
-constraint forall(d in tuesdays  )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 2, 2   ],   [  16 , 18     ]  )); %tue
-constraint forall(d in wednesdays)    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 2, 2   ],   [  18 , 10    ]  )); %wed
-constraint forall(d in thursdays )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 2, 2   ],   [  17 , 10    ]  )); %thu
-constraint forall(d in fridays   )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 2, 2   ],   [  16 , 14     ]  )); %fri
-constraint forall(d in saturdays )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 2, 2   ],   [  15 , 17     ]  )); %sat 
-constraint forall(d in sundays   )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 2, 2   ],   [  15 ,14     ]  )); %sun
+constraint forall(d in mondays   )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 3, 3   ],   [  8 , 10     ]  )); %mon
+constraint forall(d in tuesdays  )    (global_cardinality_low_up([roster[doc,d]|doc in doccount],   [ a , p ],   [ 3, 3   ],   [  8 , 6     ]  )); %tue
+constraint forall(d in wednesdays)    (global_cardinality_low_up([roster[doc,d]|doc in doccount],   [ a , p ],   [ 3, 3   ],   [  8 , 10    ]  )); %wed
+constraint forall(d in thursdays )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 3, 3   ],   [  5 , 10   ]  )); %thu
+constraint forall(d in fridays   )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 3, 3   ],   [  4 , 4     ]  )); %fri
+constraint forall(d in saturdays )    (global_cardinality_low_up(roster[..,d],                      [ a , p ],   [ 2, 3   ],   [  3 , 4     ]  )); %sat 
+constraint forall(d in sundays   )    (global_cardinality_low_up([roster[doc,d]|doc in doccount],   [ a , p ],   [ 2, 3   ],   [  3 , 4     ]  )); %sun
 
 
 %helpers = COUNT === GLOBAL_CARDINALITY

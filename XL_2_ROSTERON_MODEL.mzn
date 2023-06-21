@@ -1,6 +1,9 @@
 %%GET SABB CODE
 %%GET PHNW CODE 
 %% teresa employee number abd area
+
+include "minimizers.mzn";
+
 include "global_calendar.mzn";
 include "globals.mzn";
 include "xl_2_rosteron.dzn";
@@ -19,7 +22,8 @@ array[docs,days] of var shifts: roster;
 
 enum shifts = {o,a,p,c,l,s,i,x};
 
-enum docs = {RG,GM,DB,CC,MC,SD,ML,HL,DL,RM,GN,EW,LB,DH,SK,BL,CP,RP,AR,LS,AV,LC,KM,DZ,BB,JD,CK,NM,TB};
+enum docs =             {RG,GM,DB,CC,MC,SD,ML,HL,DL,RM,GN,EW,LB,DH,SK,BL,CP,RP,AR,LS,AV,LC,KM,DZ,BB,JD,CK,NM,TB};
+set of docs: doccount = {RG,GM,DB,CC,MC,SD,ML,HL,DL,RM,GN,EW,LB,DH,SK,BL,   RP,AR,LS,AV,LC,KM,         CK,NM,TB};
 
 array [docs] of var int: doc_num = 
 
