@@ -12,34 +12,34 @@ constraint forall(d in {GN,SK,DZ,BB,JD,CP}) (count(ssu[d,..],1,0));
 
 constraint forall(d in docs) (global_cardinality_low_up(ssu[d,..],[1],[0],[10]));
 
-constraint forall(d in docs) (global_cardinality_low_up(ssu[d, 1..14],[1],[0],[6]));
-constraint forall(d in docs) (global_cardinality_low_up(ssu[d,15..28],[1],[0],[6]));
-constraint forall(d in docs) (global_cardinality_low_up(ssu[d,29..42],[1],[0],[6]));
-constraint forall(d in docs) (global_cardinality_low_up(ssu[d,43..56],[1],[0],[6]));
-constraint forall(d in docs) (global_cardinality_low_up(ssu[d,57..70],[1],[0],[6]));
+constraint forall(d in docs) (global_cardinality_low_up(ssu[d, 1..14],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(ssu[d,15..28],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(ssu[d,29..42],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(ssu[d,43..56],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(ssu[d,57..70],[1],[0],[3]));
 
 
 constraint global_cardinality_low_up(ssu[LB,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[SD,..],[1],[2],[16]);
+constraint global_cardinality_low_up(ssu[SD,..],[1],[2],[5]);
 constraint global_cardinality_low_up(ssu[SK,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[KM,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[NM,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[AV,..],[1],[0],[15]);
-constraint global_cardinality_low_up(ssu[CK,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[EW,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[DL,..],[1],[2],[16]);
-constraint global_cardinality_low_up(ssu[RM,..],[1],[2],[16]);
-constraint global_cardinality_low_up(ssu[GN,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[DH,..],[1],[0],[15]);
+constraint global_cardinality_low_up(ssu[KM,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[NM,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[AV,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[CK,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[EW,..],[1],[0],[6]);
+constraint global_cardinality_low_up(ssu[DL,..],[1],[2],[5]);
+constraint global_cardinality_low_up(ssu[RM,..],[1],[2],[5]);
+constraint global_cardinality_low_up(ssu[GN,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[DH,..],[1],[0],[5]);
 constraint global_cardinality_low_up(ssu[AR,..],[1],[0],[10]);
-constraint global_cardinality_low_up(ssu[LS,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[AV,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[LC,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[TB,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[LB,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[ML,..],[1],[0],[16]);
-constraint global_cardinality_low_up(ssu[MC,..],[1],[2],[16]);
-constraint global_cardinality_low_up(ssu[CC,..],[1],[2],[16]);
+constraint global_cardinality_low_up(ssu[LS,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[AV,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[LC,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[TB,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[LB,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[ML,..],[1],[0],[5]);
+constraint global_cardinality_low_up(ssu[MC,..],[1],[2],[5]);
+constraint global_cardinality_low_up(ssu[CC,..],[1],[2],[5]);
 
 %%not sat and sun ssu in same weekend
 
@@ -67,16 +67,16 @@ constraint forall(d in days) (trace("doing incharge counting \(d) \n", count(inc
 
 
 
-constraint forall(d in docs) (global_cardinality_low_up(incharge[d,..],[1],[0],[8]));
+constraint forall(d in docs) (global_cardinality_low_up(incharge[d,..],[1],[0],[5]));
 
-constraint forall(d in docs) (global_cardinality_low_up(incharge[d, 1..14],[1],[0],[7]));
-constraint forall(d in docs) (global_cardinality_low_up(incharge[d,15..28],[1],[0],[7]));
-constraint forall(d in docs) (global_cardinality_low_up(incharge[d,29..42],[1],[0],[7]));
-constraint forall(d in docs) (global_cardinality_low_up(incharge[d,43..56],[1],[0],[7]));
-constraint forall(d in docs) (global_cardinality_low_up(incharge[d,57..70],[1],[0],[7]));
+constraint forall(d in docs) (global_cardinality_low_up(incharge[d, 1..14],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(incharge[d,15..28],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(incharge[d,29..42],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(incharge[d,43..56],[1],[0],[3]));
+constraint forall(d in docs) (global_cardinality_low_up(incharge[d,57..70],[1],[0],[3]));
 
 
-int: inc_hi=8;
+int: inc_hi=5;
 int: inc_lo=0;
 constraint global_cardinality_low_up(incharge[RG,..],[1],[0],[inc_hi]);
 constraint global_cardinality_low_up(incharge[GM,..],[1],[0],[inc_hi]);
@@ -147,40 +147,40 @@ constraint forall (d in days, doc in docs) ((roster[doc,d]= p <- oncall[doc,d]==
 constraint forall(d in days) (count(oncall[..,d],1,1));  %%only 1 person on call per day
 
 %%this just temp for DAMIEIN
-%constraint count([oncall[DH,d] | d in days where d mod 7 = saturday],1,1)  /\ count([oncall[DH,d] | d in days where d in {monday,tuesday,wednesday,thursday,friday,sunday}],1,0);
+constraint count([oncall[DH,d] | d in days where d mod 7 = saturday],1,1)  /\ count([oncall[DH,d] | d in days where d in {monday,tuesday,wednesday,thursday,friday,sunday}],1,0);
 %constraint count(oncall[LS,..],1,ls_oncall);
 %constraint count([oncall[DH,day] | day in sundays],1,0);
 
 
 constraint global_cardinality_low_up(oncall[RG,..],[1],[0],[0]);
 constraint global_cardinality_low_up(oncall[GM,..],[1],[0],[0]);
-constraint global_cardinality_low_up(oncall[DB,..],[1],[0],[8]);
-constraint global_cardinality_low_up(oncall[CC,..],[1],[0],[8]);
-constraint global_cardinality_low_up(oncall[MC,..],[1],[0],[8]);
-constraint global_cardinality_low_up(oncall[SD,..],[1],[0],[8]);
-constraint global_cardinality_low_up(oncall[ML,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[HL,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[DL,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[RM,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[GN,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[EW,..],[1],[0],[6]);
+constraint global_cardinality_low_up(oncall[DB,..],[1],[4],[5]);
+constraint global_cardinality_low_up(oncall[CC,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[MC,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[SD,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[ML,..],[1],[3],[5]);
+constraint global_cardinality_low_up(oncall[HL,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[DL,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[RM,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[GN,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[EW,..],[1],[0],[5]);
 constraint global_cardinality_low_up(oncall[LB,..],[1],[0],[0]);
 constraint global_cardinality_low_up(oncall[DH,..],[1],[0],[3]);
 constraint global_cardinality_low_up(oncall[SK,..],[1],[0],[0]);
-constraint global_cardinality_low_up(oncall[BL,..],[1],[0],[9]);
+constraint global_cardinality_low_up(oncall[BL,..],[1],[0],[4]);
 constraint global_cardinality_low_up(oncall[CP,..],[1],[0],[0]);
-constraint global_cardinality_low_up(oncall[RP,..],[1],[0],[9]);
+constraint global_cardinality_low_up(oncall[RP,..],[1],[0],[4]);
 constraint global_cardinality_low_up(oncall[AR,..],[1],[0],[0]);
-constraint global_cardinality_low_up(oncall[LS,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[AV,..],[1],[0],[9]);
+constraint global_cardinality_low_up(oncall[LS,..],[1],[0],[4]);
+constraint global_cardinality_low_up(oncall[AV,..],[1],[0],[5]);
 constraint global_cardinality_low_up(oncall[LC,..],[1],[0],[0]);
 constraint global_cardinality_low_up(oncall[KM,..],[1],[0],[2]);
 
 constraint global_cardinality_low_up(oncall[DZ,..],[1],[0],[0]);
 constraint global_cardinality_low_up(oncall[BB,..],[1],[0],[0]);
 constraint global_cardinality_low_up(oncall[JD,..],[1],[0],[0]);
-constraint global_cardinality_low_up(oncall[CK,..],[1],[0],[9]);
-constraint global_cardinality_low_up(oncall[NM,..],[1],[0],[3]);
+constraint global_cardinality_low_up(oncall[CK,..],[1],[0],[5]);
+constraint global_cardinality_low_up(oncall[NM,..],[1],[0],[1]);
 constraint global_cardinality_low_up(oncall[TB,..],[1],[0],[3]);
 
 

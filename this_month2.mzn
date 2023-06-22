@@ -19,7 +19,7 @@ array[1..70] of var int: GM_requests = array1d(1..70,[
 4,	2,	99,	4,	4,	99,	99,	% 	GM day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc GM
 
-%      constraint count(roster[GM,..],l,4);
+      constraint count(roster[GM,..],l,4);
 
       constraint REQUESTS[GM,1..70] = GM_requests; 
 
@@ -42,7 +42,7 @@ array[1..70] of var int: RG_requests = array1d(1..70,[
 4,	4,	4,	2,	99,	99,	99,	% 	RG day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc RG
 
-%      constraint count(roster[RG,..],l,4);
+      constraint count(roster[RG,..],l,4);
 
       constraint REQUESTS[RG,1..70] = RG_requests; 
 
@@ -66,7 +66,7 @@ array[1..70] of var int: DB_requests = array1d(1..70,[
 42,	42,	99,	99,	99,	2,	2,	% 	DB day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc DB
 
-%      constraint count(roster[DB,..],l,8);
+      constraint count(roster[DB,..],l,8);
 
       constraint REQUESTS[DB,1..70] = DB_requests; 
 
@@ -90,7 +90,7 @@ array[1..70] of var int: MC_requests = array1d(1..70,[
 99,	99,	2,	4,	1,	1,	99,	% 	MC day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc MC
 
-%      constraint count(roster[MC,..],l,8);
+      constraint count(roster[MC,..],l,8);
 
       constraint REQUESTS[MC,1..70] = MC_requests; 
 
@@ -113,7 +113,7 @@ array[1..70] of var int: CC_requests = array1d(1..70,[
 41,	41,	41,	41,	99,	99,	99,	% 	CC day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc CC
 
-%      constraint count(roster[CC,..],l,8);
+      constraint count(roster[CC,..],l,8);
 
       constraint REQUESTS[CC,1..70] = CC_requests; 
 
@@ -136,7 +136,7 @@ array[1..70] of var int: SD_requests = array1d(1..70,[
 99,	4,	1,	1,	2,	99,	99,	% 	SD day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc SD
 
-%      constraint count(roster[SD,..],l,8);
+      constraint count(roster[SD,..],l,8);
 
       constraint REQUESTS[SD,1..70] = SD_requests; 
 
@@ -160,7 +160,7 @@ array[1..70] of var int: HL_requests = array1d(1..70,[
 99,	1,	4,	2,	99,	99,	99,	% 	HL day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc HL
 
-%      constraint count(roster[HL,..],l,4);
+      constraint count(roster[HL,..],l,4);
 
       constraint REQUESTS[HL,1..70] = HL_requests; 
 
@@ -183,7 +183,7 @@ array[1..70] of var int: DL_requests = array1d(1..70,[
 41,	41,	41,	41,	99,	99,	99,	% 	DL day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc DL
 
-%     constraint count(roster[DL,..],l,4);
+     constraint count(roster[DL,..],l,4);
 
       constraint REQUESTS[DL,1..70] = DL_requests; 
 %RM
@@ -205,7 +205,7 @@ array[1..70] of var int: RM_requests = array1d(1..70,[
 1,	2,	4,	99,	1,	99,	99,	% 	RM day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc RM
 
-%      constraint count(roster[RM,..],l,0);
+      constraint count(roster[RM,..],l,0);
 
       constraint REQUESTS[RM,1..70] = RM_requests; 
 
@@ -228,7 +228,7 @@ array[1..70] of var int: GN_requests = array1d(1..70,[
 2,	99,	2,	4,	99,	2,	99,	% 	GN day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc GN
 
-%      constraint count(roster[GN,..],l,0);
+      constraint count(roster[GN,..],l,0);
 
       constraint REQUESTS[GN,1..70] = GN_requests; 
 
@@ -252,7 +252,7 @@ array[1..70] of var int: EW_requests = array1d(1..70,[
 41,	41,	41,	41,	99,	99,	99,	% 	EW day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc EW
 
-%      constraint count(roster[EW,..],l,16);
+      constraint count(roster[EW,..],l,18);
 
       constraint REQUESTS[EW,1..70] = EW_requests; 
 
@@ -276,7 +276,7 @@ array[1..70] of var int: BB_requests = array1d(1..70,[
 99,	1,	1,	99,	99,	99,	99,	% 	BB day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc BB
 
-%      constraint count(roster[BB,..],l,0);
+      constraint count(roster[BB,..],l,0);
 
       constraint REQUESTS[BB,1..70] = BB_requests; 
 
@@ -300,7 +300,7 @@ array[1..70] of var int: LB_requests = array1d(1..70,[
 48,	99,	48,	99,	48,	99,	99,	% 	LB day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc LB
 
-%      constraint count(roster[LB,..],l,30);
+      constraint count(roster[LB,..],l,30);
 
       constraint REQUESTS[LB,1..70] = LB_requests; 
 
@@ -318,13 +318,13 @@ array[1..70] of var int: LC_requests = array1d(1..70,[
 99,	1,	99,	2,	99,	1,	2,	% 	LC day 42          1a 2p 3ap 4c 91!a  92!p 
 
 99,	2,	99,	1,	99,	1,	1,	% 	LC day 49          1a 2p 3ap 4c 91!a  92!p 
-99,	99,	99,	42,	99,	99,	99,	% 	LC day 56          1a 2p 3ap 4c 91!a  92!p 
+99,	2,	99,	42,	99,	99,	99,	% 	LC day 56          1a 2p 3ap 4c 91!a  92!p 
 
 99,	42,	99,	41,	99,	99,	99,	% 	LC day 63          1a 2p 3ap 4c 91!a  92!p 
 99,	41,	99,	41,	99,	99,	99,	% 	LC day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc LC
 
-%      constraint count(roster[LC,..],l,7);
+      constraint count(roster[LC,..],l,7);
 
       constraint REQUESTS[LC,1..70] = LC_requests; 
 
@@ -348,7 +348,7 @@ array[1..70] of var int: DH_requests = array1d(1..70,[
 2,	99,	4,	99,	1,	2,	2,	% 	DH day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc DH
 
-%      constraint count(roster[DH,..],l,0);
+      constraint count(roster[DH,..],l,0);
 
       constraint REQUESTS[DH,1..70] = DH_requests; 
 
@@ -371,7 +371,7 @@ array[1..70] of var int: SK_requests = array1d(1..70,[
 45,	45,	45,	99,	99,	99,	99,	% 	SK day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc SK
 
-%      constraint count(roster[SK,..],l,30);
+      constraint count(roster[SK,..],l,30);
 
       constraint REQUESTS[SK,1..70] = SK_requests; 
 
@@ -395,7 +395,7 @@ array[1..70] of var int: BL_requests = array1d(1..70,[
 99,	99,	99,	1,	2,	99,	99,	% 	BL day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc BL
 
-%      constraint count(roster[BL,..],l,8);
+      constraint count(roster[BL,..],l,8);
 
       constraint REQUESTS[BL,1..70] = BL_requests; 
 
@@ -418,7 +418,7 @@ array[1..70] of var int: ML_requests = array1d(1..70,[
 99,	99,	1,	1,	99,	99,	1,	% 	ML day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc ML
 
-%      constraint count(roster[ML,..],l,3);
+      constraint count(roster[ML,..],l,3);
 
       constraint REQUESTS[ML,1..70] = ML_requests; 
 
@@ -442,7 +442,7 @@ array[1..70] of var int: CP_requests = array1d(1..70,[
 99,	99,	1,	99,	99,	99,	99,	% 	CP day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc CP
 
-%      constraint count(roster[CP,..],l,0);
+      constraint count(roster[CP,..],l,0);
 
       constraint REQUESTS[CP,1..70] = CP_requests; 
 
@@ -466,7 +466,7 @@ array[1..70] of var int: RP_requests = array1d(1..70,[
 99,	1,	99,	2,	4,	99,	2,	% 	RP day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc RP
 
-%      constraint count(roster[RP,..],l,0);
+      constraint count(roster[RP,..],l,0);
 
       constraint REQUESTS[RP,1..70] = RP_requests; 
 
@@ -490,7 +490,7 @@ array[1..70] of var int: AR_requests = array1d(1..70,[
 99,	99,	42,	42,	99,	99,	99,	% 	AR day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc AR
 
-%      constraint count(roster[AR,..],l,10);
+      constraint count(roster[AR,..],l,10);
 
       constraint REQUESTS[AR,1..70] = AR_requests; 
 
@@ -504,7 +504,7 @@ array[1..70] of var int: LS_requests = array1d(1..70,[
 1,	99,	2,	99,	2,	2,	99,	% 	LS day 21          1a 2p 3ap 4c 91!a  92!p 
 99,	99,	2,	99,	99,	99,	99,	% 	LS day 28          1a 2p 3ap 4c 91!a  92!p 
 
-1,	1,	99,	99,	1,	99,	99,	% 	LS day 35          1a 2p 3ap 4c 91!a  92!p 
+1,	1,	99,	99,	1,	41,	99,	% 	LS day 35          1a 2p 3ap 4c 91!a  92!p 
 99,	99,	2,	99,	99,	99,	99,	% 	LS day 42          1a 2p 3ap 4c 91!a  92!p 
 
 1,	99,	2,	99,	2,	2,	99,	% 	LS day 49          1a 2p 3ap 4c 91!a  92!p 
@@ -514,7 +514,7 @@ array[1..70] of var int: LS_requests = array1d(1..70,[
 99,	99,	2,	99,	99,	99,	99,	% 	LS day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc LS
 
-%      constraint count(roster[LS,..],l,0);
+      constraint count(roster[LS,..],l,1);
 
       constraint REQUESTS[LS,1..70] = LS_requests; 
 %AV
@@ -536,7 +536,7 @@ array[1..70] of var int: AV_requests = array1d(1..70,[
 1,	99,	4,	4,	2,	99,	99,	% 	AV day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc AV
 
-%      constraint count(roster[AV,..],l,0);
+      constraint count(roster[AV,..],l,0);
 
       constraint REQUESTS[AV,1..70] = AV_requests; 
 
@@ -561,7 +561,7 @@ array[1..70] of var int: TB_requests = array1d(1..70,[
 1,	4,	2,	99,	99,	99,	1,	% 	TB day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc TB
 
-%      constraint count(roster[TB,..],l,3);
+      constraint count(roster[TB,..],l,3);
 
       constraint REQUESTS[TB,1..70] = TB_requests; 
 
@@ -585,7 +585,7 @@ array[1..70] of var int: JD_requests = array1d(1..70,[
 99,	99,	1,	99,	99,	99,	99,	% 	JD day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc JD
 
-%      constraint count(roster[JD,..],l,0);
+      constraint count(roster[JD,..],l,0);
 
       constraint REQUESTS[JD,1..70] = JD_requests; 
 
@@ -609,7 +609,7 @@ array[1..70] of var int: CK_requests = array1d(1..70,[
 1,	2,	2,	99,	99,	1,	1,	% 	CK day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc CK
 
-%      constraint count(roster[CK,..],l,5);
+      constraint count(roster[CK,..],l,5);
 
       constraint REQUESTS[CK,1..70] = CK_requests; 
 
@@ -632,7 +632,7 @@ array[1..70] of var int: NM_requests = array1d(1..70,[
 99,	99,	99,	99,	99,	99,	99,	% 	NM day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc NM
 
-%      constraint count(roster[NM,..],l,0);
+      constraint count(roster[NM,..],l,0);
 
       constraint REQUESTS[NM,1..70] = NM_requests; 
 %KM
@@ -654,7 +654,7 @@ array[1..70] of var int: KM_requests = array1d(1..70,[
 2,	99,	99,	99,	99,	99,	99,	% 	KM day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc KM
 
-%      constraint count(roster[KM,..],l,0);
+      constraint count(roster[KM,..],l,0);
 
       constraint REQUESTS[KM,1..70] = KM_requests; 
 
@@ -678,7 +678,7 @@ array[1..70] of var int: DZ_requests = array1d(1..70,[
 99,	99,	99,	99,	99,	99,	99,	% 	DZ day 70          1a 2p 3ap 4c 91!a  92!p 
       ]); % end of array for doc DZ
 
-%      constraint count(roster[DZ,..],l,0);
+      constraint count(roster[DZ,..],l,0);
 
       constraint REQUESTS[DZ,1..70] = DZ_requests; 
 
