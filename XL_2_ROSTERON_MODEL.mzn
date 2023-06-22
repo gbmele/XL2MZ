@@ -2,18 +2,17 @@
 %%GET PHNW CODE 
 %% teresa employee number abd area
 
-include "minimizers.mzn";
+%include "minimizers.mzn";
 
 include "global_calendar.mzn";
 include "globals.mzn";
-include "xl_2_rosteron.dzn";
-include "this_month.dzn";             %exported from excel    %% here can do this_month_requests_off_leave_then_assign_weekends...
-include "xl_2_rosteron_staff.mzn";
+include "xl_2_ROSTERON_DATA.mzn";
+include "this_month2.mzn";             %exported from excel    %% here can do this_month_requests_off_leave_then_assign_weekends...
 include "roster_on_output.mzn";
 include "rosteron_dump.mzn";
-include "xl_2_rosteron_ssu_oncall.mzn";
+include "XL_2_ROSTERON_ssu_oncall_incharge.mzn";
 
-include "xl_2_rosteron_allocate.mzn";
+%include "xl_2_rosteron_allocate.mzn";
 
 set of int: days  = 1..70; 
 int:        DAYS  =    70;
@@ -50,7 +49,7 @@ function var shifts: get_shift(var int:n) =
                (if    n =     0           then o
                elseif n =     1           then a
                elseif n =     2           then p
-               elseif n =     3           then _   %% any shift -- this will be dynamically code to be a or p
+               elseif n =     3           then o   %% any shift -- this will be dynamically code to be a or p
                elseif n =     4           then c
                elseif n in { 41, %AL
                              42, %CONF
@@ -67,16 +66,16 @@ function var shifts: get_shift(var int:n) =
                                }          then o 
                elseif n in { 91, %% not am      constraint will be dynamically made
                              92, %% not pm      constraint will be dynamically made
-                               }          then _                   
-               elseif n =     8           then _
-               else                       x
+                               }          then o                   
+               elseif n =     8           then o
+               else                       o
                endif);
             
 %TEST
 constraint assert(length(roster)= DAYS * length(docs),"testing roster dimensions = DAYS by DOCS");
-constraint forall (doc = JD) (REQUESTS[JD,1]  = 77);
-constraint forall (doc = JD) (REQUESTS[JD,70] = 77);
-constraint forall (doc = BB) (REQUESTS[BB,1]  = 77 /\ REQUESTS[BB,70]=77);
+%constraint forall (doc = JD) (REQUESTS[JD,1]  = 77);
+%constraint forall (doc = JD) (REQUESTS[JD,70] = 77);
+%constraint forall (doc = BB) (REQUESTS[BB,1]  = 77 /\ REQUESTS[BB,70]=77);
 
 
 
